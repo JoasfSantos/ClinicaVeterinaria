@@ -1,0 +1,239 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\utilidades\\pathdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\utilidades\\pathdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\view\\paglogin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\view\\paglogin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\view\\paglogin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\view\\paglogin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\view\\pagregistro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\view\\pagregistro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\view\\pagregistro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\view\\pagregistro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\model\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\model\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\viewmodel\\registroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\viewmodel\\registroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|c:\\users\\jozz\\desktop\\clinicavet\\clinicavet\\clinicavet\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{617C854C-475D-451A-8C9D-3295375CCB16}|ClinicaVet\\ClinicaVet.csproj|solutionrelative:clinicavet\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\App.xaml.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\App.xaml.cs",
+              "RelativeToolTip": "ClinicaVet\\App.xaml.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T00:08:31.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PagLogin.xaml",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagLogin.xaml",
+              "RelativeDocumentMoniker": "ClinicaVet\\View\\PagLogin.xaml",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagLogin.xaml",
+              "RelativeToolTip": "ClinicaVet\\View\\PagLogin.xaml",
+              "ViewState": "AQIAABgAAAAAAAAAAAAgwC8AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-05-17T16:53:36.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PagLogin.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagLogin.xaml.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\View\\PagLogin.xaml.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagLogin.xaml.cs",
+              "RelativeToolTip": "ClinicaVet\\View\\PagLogin.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T12:21:04.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\ViewModel\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\ViewModel\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\ViewModel\\LoginViewModel.cs",
+              "RelativeToolTip": "ClinicaVet\\ViewModel\\LoginViewModel.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAgwAEAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T02:48:44.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PagRegistro.xaml",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagRegistro.xaml",
+              "RelativeDocumentMoniker": "ClinicaVet\\View\\PagRegistro.xaml",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagRegistro.xaml",
+              "RelativeToolTip": "ClinicaVet\\View\\PagRegistro.xaml",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAAACEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-05-17T17:36:52.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PagRegistro.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagRegistro.xaml.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\View\\PagRegistro.xaml.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\View\\PagRegistro.xaml.cs",
+              "RelativeToolTip": "ClinicaVet\\View\\PagRegistro.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T14:08:19.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RegistroViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\ViewModel\\RegistroViewModel.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\ViewModel\\RegistroViewModel.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\ViewModel\\RegistroViewModel.cs",
+              "RelativeToolTip": "ClinicaVet\\ViewModel\\RegistroViewModel.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAADUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T17:44:41.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Model\\Usuario.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\Model\\Usuario.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Model\\Usuario.cs",
+              "RelativeToolTip": "ClinicaVet\\Model\\Usuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T11:59:57.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Repositories\\Repository.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\Repositories\\Repository.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Repositories\\Repository.cs",
+              "RelativeToolTip": "ClinicaVet\\Repositories\\Repository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T16:04:16.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "ClinicaVet\\Repositories\\UsuarioRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T16:30:29.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Repositories\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\Repositories\\UnitOfWork.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Repositories\\UnitOfWork.cs",
+              "RelativeToolTip": "ClinicaVet\\Repositories\\UnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T23:41:26.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DBContext.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Data\\DBContext.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\Data\\DBContext.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Data\\DBContext.cs",
+              "RelativeToolTip": "ClinicaVet\\Data\\DBContext.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T17:39:39.468Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PathDB.cs",
+              "DocumentMoniker": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Utilidades\\PathDB.cs",
+              "RelativeDocumentMoniker": "ClinicaVet\\Utilidades\\PathDB.cs",
+              "ToolTip": "C:\\Users\\jozz\\Desktop\\ClinicaVet\\ClinicaVet\\ClinicaVet\\Utilidades\\PathDB.cs*",
+              "RelativeToolTip": "ClinicaVet\\Utilidades\\PathDB.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T02:57:48.16Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

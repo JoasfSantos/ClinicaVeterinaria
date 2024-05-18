@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ClinicaVet.View"
+             xmlns:vm="clr-namespace:ClinicaVet.ViewModel" 
+             x:Class="ClinicaVet.View.PagRegistro"
+             x:DataType="vm:PagRegistroViewModel"
+             Title="">
+
+    <VerticalStackLayout Margin="10" Spacing="10">
+        <Label 
+            Text="Registros LOCBOY"
+            FontSize="30"
+            Padding="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *, *, *">
+            <Label Text="Nome Completo:"
+                   FontSize="20"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"/>
+            <Label Grid.Row="1"
+                   Text="Email:"
+                   FontSize="20"
+                   HorizontalTextAlignment="End"
+                   VerticalOptions="Center" />
+            <Label Grid.Row="2"
+                   Text="Senha:"
+                   FontSize="20"
+                   HorizontalTextAlignment="End"
+                   VerticalOptions="Center" />
+            <Label Grid.Row="3"
+                   Text="Colaborador:"
+                   FontSize="20"
+                   HorizontalTextAlignment="End"
+                   VerticalOptions="Center" />
+
+            <Entry Grid.Column="1" 
+                   x:Name="registroNomeEntry"
+                   Placeholder="Nome"
+                   Text="{Binding Nome}"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Column="1" 
+                   Grid.Row="1"
+                   x:Name="registroEmailEntry"
+                   Placeholder="Email"
+                   Text="{Binding Email}"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Column="1" 
+                   Grid.Row="2"
+                   x:Name="registroSenhaEntry"
+                   Placeholder="Senha"
+                   Text="{Binding Senha}"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"/>
+
+        </Grid>
+        <Button Grid.Row="4" Grid.Column="1"
+                x:Name="registroBtn"
+                HorizontalOptions="Center"
+                Command="{Binding RegistroCommand}"
+                Text="Registrar-se"
+                BackgroundColor="Green"/>
+        <local:LogoLoc />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,1 @@
+C:\Users\charl\source\repos\ClinicaVet\ClinicaVet\ClinicaVet.csproj;x64

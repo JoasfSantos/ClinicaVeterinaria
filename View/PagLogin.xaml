@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ClinicaVet.View"
+             xmlns:vm="clr-namespace:ClinicaVet.ViewModel"
+             x:Class="ClinicaVet.View.PagLogin"
+             x:DataType="vm:PagLoginViewModel"
+             Title="">
+
+    <VerticalStackLayout Margin="20" Spacing="30">
+        
+        <Image Source="banner.png" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+
+        <Entry x:Name="loginEmailEntry" 
+               Placeholder="Digite seu e-mail"
+               HorizontalTextAlignment="Center"
+               FontSize="15"
+               Text="{Binding Email}"/>
+
+        <Entry x:Name="loginSenhaEntry"
+               Placeholder="Digite sua senha"
+               HorizontalTextAlignment="Center"
+               FontSize="15" 
+               IsPassword="True"
+               Text="{Binding Senha}"/>
+
+        <Button x:Name="loginBtn"           
+                Text="ENTRAR" 
+                FontSize="20"
+                Command="{Binding LoginCommand}"
+                HorizontalOptions="Center"
+                BackgroundColor="Green"/>
+
+        <Button x:Name="registroBtn"
+                Text="Novo aqui? Registre-se"
+                TextColor="DeepSkyBlue"
+                HorizontalOptions="Center"
+                BackgroundColor="White"
+                Clicked="RedirecionarPagRegistro_Clicked"
+                FontSize="15"/>
+
+        <local:LogoLoc/>
+        
+    </VerticalStackLayout>
+</ContentPage>
