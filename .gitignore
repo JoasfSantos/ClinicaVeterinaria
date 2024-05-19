@@ -1,1 +1,9 @@
 obj/Debug/
+obj/Debug/net8.0-android/ClinicaVet.AssemblyInfo.cs
+obj/Debug/net8.0-android/ClinicaVet.AssemblyInfoInputs.cache
+obj/Debug/net8.0-ios/iossimulator-x64/ClinicaVet.AssemblyInfo.cs
+obj/Debug/net8.0-ios/iossimulator-x64/ClinicaVet.AssemblyInfoInputs.cache
+obj/Debug/net8.0-maccatalyst/maccatalyst-x64/ClinicaVet.AssemblyInfo.cs
+obj/Debug/net8.0-maccatalyst/maccatalyst-x64/ClinicaVet.AssemblyInfoInputs.cache
+obj/Debug/net8.0-windows10.0.19041.0/win10-x64/ClinicaVet.AssemblyInfo.cs
+obj/Debug/net8.0-windows10.0.19041.0/win10-x64/ClinicaVet.AssemblyInfoInputs.cache
