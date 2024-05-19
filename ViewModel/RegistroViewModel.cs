@@ -12,10 +12,10 @@ public class PagRegistroViewModel : INotifyPropertyChanged
 
     public ICommand RegistroCommand { get; }
 
-    private string _nome { get; set; }
-    private string _email { get; set; }
-    private string _senha { get; set; }
-    private bool _colaborador { get; set; }
+    private string _nome;
+    private string _email;
+    private string _senha;
+    private bool _colaborador;
 
     public string Nome
     {
@@ -90,11 +90,11 @@ public class PagRegistroViewModel : INotifyPropertyChanged
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    // Outros códigos de ViewModel aqui...
+
 }

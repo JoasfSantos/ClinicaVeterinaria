@@ -7,62 +7,94 @@
              x:DataType="vm:PagRegistroViewModel"
              Title="">
 
-    <VerticalStackLayout Margin="10" Spacing="10">
-        <Label 
-            Text="Registros LOCBOY"
-            FontSize="30"
-            Padding="20"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *, *, *">
-            <Label Text="Nome Completo:"
-                   FontSize="20"
-                   HorizontalOptions="End"
-                   VerticalOptions="Center"/>
-            <Label Grid.Row="1"
-                   Text="Email:"
-                   FontSize="20"
-                   HorizontalTextAlignment="End"
-                   VerticalOptions="Center" />
-            <Label Grid.Row="2"
-                   Text="Senha:"
-                   FontSize="20"
-                   HorizontalTextAlignment="End"
-                   VerticalOptions="Center" />
-            <Label Grid.Row="3"
-                   Text="Colaborador:"
-                   FontSize="20"
-                   HorizontalTextAlignment="End"
-                   VerticalOptions="Center" />
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MyBorderStyle" TargetType="Border">
+                <Setter Property="Stroke" Value="#32CD32" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 20,10,10,20" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Padding" Value="16,8" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="300" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-            <Entry Grid.Column="1" 
-                   x:Name="registroNomeEntry"
-                   Placeholder="Nome"
-                   Text="{Binding Nome}"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="Center"/>
-            <Entry Grid.Column="1" 
-                   Grid.Row="1"
-                   x:Name="registroEmailEntry"
-                   Placeholder="Email"
-                   Text="{Binding Email}"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="Center"/>
-            <Entry Grid.Column="1" 
-                   Grid.Row="2"
-                   x:Name="registroSenhaEntry"
-                   Placeholder="Senha"
-                   Text="{Binding Senha}"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="Center"/>
+    <Border Stroke="#32CD32" 
+            StrokeThickness="2" 
+            StrokeShape="RoundRectangle 10,10,10,10" 
+            Background="White"
+            Padding="16,8" 
+            HorizontalOptions="Center"
+            WidthRequest="370"
+            HeightRequest="580">
 
-        </Grid>
-        <Button Grid.Row="4" Grid.Column="1"
-                x:Name="registroBtn"
-                HorizontalOptions="Center"
-                Command="{Binding RegistroCommand}"
-                Text="Registrar-se"
-                BackgroundColor="Green"/>
-        <local:LogoLoc />
-    </VerticalStackLayout>
+        <VerticalStackLayout Margin="10" Spacing="10">
+
+            <Label Text="Nome"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="0,0,0,-15"
+                   FontAttributes="Bold, Italic" />
+            
+            <Border Style="{StaticResource MyBorderStyle}">
+                
+                <Entry x:Name="registroNomeEntry"
+                       FontSize="20"
+                       Text="{Binding Nome}"
+                       HorizontalTextAlignment="Center" />
+                
+            </Border>
+
+            <Label Text="E-mail"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,-15"
+                   FontAttributes="Bold, Italic" />
+            
+            <Border Style="{StaticResource MyBorderStyle}">
+                
+                <Entry x:Name="registroEmailEntry"
+                       FontSize="20"
+                       Text="{Binding Email}"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" />
+                
+            </Border>
+
+            <Label Text="Senha"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,-15"
+                   FontAttributes="Bold, Italic" />
+            
+            <Border Stroke="#32CD32" 
+                    StrokeThickness="1" 
+                    StrokeShape="RoundRectangle 20,10,10,20" 
+                    Background="White"
+                    Padding="16,8" 
+                    HorizontalOptions="Center"
+                    WidthRequest="200">
+                
+                <Entry x:Name="registroSenhaEntry"
+                        FontSize="20"
+                        Text="{Binding Senha}"
+                        IsPassword="True"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center"
+                        MaxLength="8" />
+            </Border>
+
+            <Button x:Name="registroBtn"
+                    HorizontalOptions="Center"
+                    Command="{Binding RegistroCommand}"
+                    Text="Registrar-se"
+                    BackgroundColor="Green" />
+
+            <local:LogoLoc />
+
+        </VerticalStackLayout>
+    </Border>
 </ContentPage>

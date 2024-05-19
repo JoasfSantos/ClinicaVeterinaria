@@ -7,41 +7,85 @@
              x:DataType="vm:PagLoginViewModel"
              Title="">
 
-    <VerticalStackLayout Margin="20" Spacing="30">
-        
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MyEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Margin="20" Spacing="20">
+
         <Image Source="banner.png" 
-               HorizontalOptions="Center" 
-               VerticalOptions="Center" />
+               HorizontalOptions="Center" />
 
-        <Entry x:Name="loginEmailEntry" 
-               Placeholder="Digite seu e-mail"
-               HorizontalTextAlignment="Center"
-               FontSize="15"
-               Text="{Binding Email}"/>
+        <Border Stroke="#32CD32" 
+                StrokeThickness="2" 
+                StrokeShape="RoundRectangle 20,10,10,20" 
+                Background="White"
+                Padding="16,8" 
+                HorizontalOptions="Center"
+                WidthRequest="350">
+            
+            <Entry Placeholder="Digite seu e-mail"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource MyEntryStyle}"
+                   Text="{Binding Email}"/>
+            
+        </Border>
 
-        <Entry x:Name="loginSenhaEntry"
-               Placeholder="Digite sua senha"
-               HorizontalTextAlignment="Center"
-               FontSize="15" 
-               IsPassword="True"
-               Text="{Binding Senha}"/>
+        <Border Stroke="#32CD32" 
+                StrokeThickness="2" 
+                StrokeShape="RoundRectangle 20,10,10,20" 
+                Background="White"
+                Padding="16,8" 
+                HorizontalOptions="Center"
+                WidthRequest="200">
+            
+            <Entry Placeholder="Digite sua senha"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource MyEntryStyle}"
+                   IsPassword="True"
+                   Text="{Binding Senha}"
+                   WidthRequest="170"
+                   MaxLength="8" />
+            
+        </Border>
 
         <Button x:Name="loginBtn"           
                 Text="ENTRAR" 
                 FontSize="20"
                 Command="{Binding LoginCommand}"
                 HorizontalOptions="Center"
-                BackgroundColor="Green"/>
+                BackgroundColor="Green" />
 
         <Button x:Name="registroBtn"
-                Text="Novo aqui? Registre-se"
+                Text="Novo aqui? Registre-se!"
                 TextColor="DeepSkyBlue"
                 HorizontalOptions="Center"
                 BackgroundColor="White"
                 Clicked="RedirecionarPagRegistro_Clicked"
-                FontSize="15"/>
+                FontSize="15" />
+
+        <Button x:Name="viewUsersBtn"
+        Text="Ver todos os usuários" 
+        FontSize="20"
+        Command="{Binding ViewUsersCommand}"
+        HorizontalOptions="Center"
+        BackgroundColor="Blue" />
+
+        <ListView ItemsSource="{Binding Usuarios}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding IdUsuario}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
 
         <local:LogoLoc/>
-        
+
     </VerticalStackLayout>
 </ContentPage>

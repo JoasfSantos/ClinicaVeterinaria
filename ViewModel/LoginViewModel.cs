@@ -1,5 +1,5 @@
 ﻿using ClinicaVet.Repositories;
-using ClinicaVet.Utilidades;
+using ClinicaVet.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -11,13 +11,36 @@ namespace ClinicaVet.ViewModel
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        private IEnumerable<Usuario> _usuarios;
+        private int _idUsuario;
+
         public ICommand LoginCommand { get; }
+        public ICommand ViewUsersCommand { get; private set; }
 
         private string _email;
-
         private string _senha;
 
-        private string _pathDbSqlite;
+        public IEnumerable<Usuario> Usuarios
+
+
+        {
+            get => _usuarios;
+            set
+            {
+                _usuarios = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int IdUsuario
+        {
+            get => _idUsuario;
+            set
+            {
+                _idUsuario = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Email
         {
@@ -39,29 +62,25 @@ namespace ClinicaVet.ViewModel
             }
         }
 
-        public string PathDbSqlite // Propriedade para exibir o valor do pathDbSqlite
-        {
-            get => _pathDbSqlite;
-            set
-            {
-                _pathDbSqlite = value;
-                OnPropertyChanged();
-            }
-        }
 
         public PagLoginViewModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             LoginCommand = new Command(async () => await OnLoginClicked());
-            PathDbSqlite = PathDB.GetPath("teste.db3");
+            ViewUsersCommand = new Command(async () => await OnViewUsersClicked());
         }
 
         private async Task OnLoginClicked()
         {
-            // Supondo que você tenha as variáveis 'email' e 'senha'
-            var user = await _unitOfWork.UsuarioRepository.GetUserByEmailAndPassword(Email, Senha);
+            bool isValid = await ValidarLogin();
+            if (!isValid)
+            {
+                return;
+            }
 
-            if (user != null)
+            var usuario = await _unitOfWork.UsuarioRepository.GetUserByEmailAndPassword(Email, Senha);
+
+            if (usuario != null)
             {
                 // O usuário com o email e senha fornecidos foi encontrado
                 // Agora você pode proceder com a lógica de login
@@ -73,8 +92,25 @@ namespace ClinicaVet.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private async Task<bool> ValidarLogin()
+        {
+            if (Email == null || Senha == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Email ou senha não podem estar vazios.", "OK");
+                return false;
+            }
+
+            return true;
+        }
+
+        private async Task OnViewUsersClicked()
+        {
+            _usuarios = await _unitOfWork.UsuarioRepository.GetAll();
+        }
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
