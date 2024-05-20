@@ -31,6 +31,8 @@
             HeightRequest="580">
 
         <VerticalStackLayout Margin="10" Spacing="10">
+            <Image Source="registro.png"
+                   ScaleY="1.5" />
 
             <Label Text="Nome"
                    FontSize="20"
@@ -76,7 +78,7 @@
                     Background="White"
                     Padding="16,8" 
                     HorizontalOptions="Center"
-                    WidthRequest="400">
+                    WidthRequest="200">
                 
                 <Entry x:Name="registroSenhaEntry"
                         FontSize="20"
@@ -91,11 +93,13 @@
                     HorizontalOptions="Center"
                     Command="{Binding RegistroCommand}"
                     Text="Registrar-se"
-                    BackgroundColor="Green" />
+                    BackgroundColor="Green" 
+                    Margin="10"
+                    CharacterSpacing="0.5"/>
 
             <local:LogoLoc />
 
-            <ListView ItemsSource="{Binding Usuarios}" >
+            <!--<ListView ItemsSource="{Binding Usuarios}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -107,7 +111,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>--> 
 
             <!--<Label Text="{Binding NomeDoUsuario}"
                    FontSize="20"
