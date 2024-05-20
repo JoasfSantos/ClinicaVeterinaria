@@ -76,7 +76,7 @@
                     Background="White"
                     Padding="16,8" 
                     HorizontalOptions="Center"
-                    WidthRequest="200">
+                    WidthRequest="400">
                 
                 <Entry x:Name="registroSenhaEntry"
                         FontSize="20"
