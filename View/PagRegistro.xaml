@@ -95,6 +95,29 @@
 
             <local:LogoLoc />
 
+            <ListView ItemsSource="{Binding Usuarios}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding NomeDoUsuario}" 
+                       FontSize="20" 
+                       HorizontalTextAlignment="Center" 
+                       BackgroundColor="AntiqueWhite" 
+                       FontAttributes="Bold, Italic" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--<Label Text="{Binding NomeDoUsuario}"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="0,0,0,-15"
+
+                   FontAttributes="Bold, Italic" />-->
+
+
         </VerticalStackLayout>
     </Border>
 </ContentPage>

@@ -69,22 +69,6 @@
                 Clicked="RedirecionarPagRegistro_Clicked"
                 FontSize="15" />
 
-        <Button x:Name="viewUsersBtn"
-        Text="Ver todos os usuários" 
-        FontSize="20"
-        Command="{Binding ViewUsersCommand}"
-        HorizontalOptions="Center"
-        BackgroundColor="Blue" />
-
-        <ListView ItemsSource="{Binding Usuarios}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding IdUsuario}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-
         <local:LogoLoc/>
 
     </VerticalStackLayout>

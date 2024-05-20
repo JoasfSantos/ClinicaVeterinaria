@@ -1,58 +1,36 @@
 ﻿using ClinicaVet.Repositories;
 using ClinicaVet.Model;
-using ClinicaVet.View;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ClinicaVet.ViewModel;
-public class PagRegistroViewModel : INotifyPropertyChanged
+public partial class PagRegistroViewModel : ObservableObject
 {
     private readonly IUnitOfWork _unitOfWork;
 
     public ICommand RegistroCommand { get; }
 
-    private string _nome;
-    private string _email;
-    private string _senha;
-    private bool _colaborador;
+    [ObservableProperty]
+    private string nome;
 
-    public string Nome
+    [ObservableProperty]
+    private string email;
+
+    [ObservableProperty]
+    private string senha;
+
+    [ObservableProperty]
+    private bool colaborador;
+
+    private IEnumerable<Usuario> _usuarios;
+
+    public IEnumerable<Usuario> Usuarios
     {
-        get => _nome;
+        get => _usuarios;
         set
         {
-            _nome = value;
+            _usuarios = value;
             OnPropertyChanged();
-        }
-    }
-
-    public string Email
-    {
-        get => _email;
-        set
-        {
-            _email = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string Senha
-    {
-        get => _senha;
-        set
-        {
-            _senha = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public bool Colaborador
-    {
-        get => _colaborador;
-        set
-        {
-            _colaborador = value;
         }
     }
 
@@ -60,6 +38,7 @@ public class PagRegistroViewModel : INotifyPropertyChanged
     {
         _unitOfWork = unitOfWork;
         RegistroCommand = new Command(async () => await OnRegistroClicked());
+        OnViewUsersClicked();
     }
 
     private async Task OnRegistroClicked()
@@ -81,7 +60,7 @@ public class PagRegistroViewModel : INotifyPropertyChanged
             await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK");
 
             // Retornar para a página de login (substitua PagLogin por sua página real)
-            await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
+            //await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
         }
         catch (Exception ex)
         {
@@ -89,12 +68,8 @@ public class PagRegistroViewModel : INotifyPropertyChanged
             await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar: {ex.Message}", "OK");
         }
     }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    private async Task OnViewUsersClicked()
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        _usuarios = await _unitOfWork.UsuarioRepository.GetAll();
     }
-
-
 }

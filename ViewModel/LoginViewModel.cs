@@ -11,7 +11,7 @@ namespace ClinicaVet.ViewModel
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        private IEnumerable<Usuario> _usuarios;
+        
         private int _idUsuario;
 
         public ICommand LoginCommand { get; }
@@ -20,17 +20,7 @@ namespace ClinicaVet.ViewModel
         private string _email;
         private string _senha;
 
-        public IEnumerable<Usuario> Usuarios
 
-
-        {
-            get => _usuarios;
-            set
-            {
-                _usuarios = value;
-                OnPropertyChanged();
-            }
-        }
 
         public int IdUsuario
         {
@@ -67,7 +57,6 @@ namespace ClinicaVet.ViewModel
         {
             _unitOfWork = unitOfWork;
             LoginCommand = new Command(async () => await OnLoginClicked());
-            ViewUsersCommand = new Command(async () => await OnViewUsersClicked());
         }
 
         private async Task OnLoginClicked()
@@ -102,12 +91,6 @@ namespace ClinicaVet.ViewModel
 
             return true;
         }
-
-        private async Task OnViewUsersClicked()
-        {
-            _usuarios = await _unitOfWork.UsuarioRepository.GetAll();
-        }
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
