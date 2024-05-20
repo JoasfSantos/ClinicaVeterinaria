@@ -25,13 +25,15 @@
             StrokeThickness="2" 
             StrokeShape="RoundRectangle 10,10,10,10" 
             Background="White"
-            Padding="16,8" 
+            Padding="15,8" 
             HorizontalOptions="Center"
             WidthRequest="370"
             HeightRequest="580">
 
         <VerticalStackLayout Margin="10" Spacing="10">
 
+            <Image Source="registro.png" 
+                   ScaleY="1.5"/>
             <Label Text="Nome"
                    FontSize="20"
                    HorizontalOptions="Center"
@@ -91,7 +93,9 @@
                     HorizontalOptions="Center"
                     Command="{Binding RegistroCommand}"
                     Text="Registrar-se"
-                    BackgroundColor="Green" />
+                    BackgroundColor="Green" 
+                    CharacterSpacing="0.5"
+                    Margin="10"/>
 
             <local:LogoLoc />
 
