@@ -21,6 +21,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+
     <Border Stroke="#32CD32" 
             StrokeThickness="2" 
             StrokeShape="RoundRectangle 10,10,10,10" 
@@ -28,11 +29,12 @@
             Padding="16,8" 
             HorizontalOptions="Center"
             WidthRequest="370"
-            HeightRequest="580">
+            HeightRequest="720">
 
         <VerticalStackLayout Margin="10" Spacing="10">
+            
             <Image Source="registro.png"
-                   ScaleY="1.5" />
+                   ScaleY="2" />
 
             <Label Text="Nome"
                    FontSize="20"
@@ -98,29 +100,6 @@
                     CharacterSpacing="0.5"/>
 
             <local:LogoLoc />
-
-            <!--<ListView ItemsSource="{Binding Usuarios}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Label Text="{Binding NomeDoUsuario}" 
-                       FontSize="20" 
-                       HorizontalTextAlignment="Center" 
-                       BackgroundColor="AntiqueWhite" 
-                       FontAttributes="Bold, Italic" />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>--> 
-
-            <!--<Label Text="{Binding NomeDoUsuario}"
-                   FontSize="20"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   Margin="0,0,0,-15"
-
-                   FontAttributes="Bold, Italic" />-->
-
 
         </VerticalStackLayout>
     </Border>
