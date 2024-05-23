@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="ClinicaVet.View.PagPrincipal"
+            Title="">
+    
+    <!--Content Page dos agendamentos ativos-->
+    <ContentPage Title=""
+                 IconImageSource="meus_agendamentos.png">
+        <Border Stroke="#32CD32" 
+                StrokeThickness="2" 
+                StrokeShape="RoundRectangle 10,10,10,10" 
+                Background="White"
+                Padding="16,8" 
+                HorizontalOptions="Center"
+                WidthRequest="370"
+                HeightRequest="580">
+
+            <VerticalStackLayout>
+                <Image Source="agendamentos_banner.png" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            
+        </Border>
+    </ContentPage>
+    
+    <!--Content Page para agendamento-->
+    <ContentPage Title=""
+                 IconImageSource="agendar.png">
+        <Border Stroke="#32CD32" 
+                StrokeThickness="2" 
+                StrokeShape="RoundRectangle 10,10,10,10" 
+                Background="White"
+                Padding="16,8" 
+                HorizontalOptions="Center"
+                WidthRequest="370"
+                HeightRequest="580">
+
+            <VerticalStackLayout>
+                <Image Source="agendar_banner.png" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+        </Border>
+    </ContentPage>
+    
+    <!--Content Page do cadastro-->
+    <ContentPage Title=""
+                 IconImageSource="cadastro.png">
+        <Border Stroke="#32CD32" 
+                StrokeThickness="2" 
+                StrokeShape="RoundRectangle 10,10,10,10" 
+                Background="White"
+                Padding="16,8" 
+                HorizontalOptions="Center"
+                WidthRequest="370"
+                HeightRequest="580">
+
+            <VerticalStackLayout>
+                <Image Source="cadastro_banner.png" HorizontalOptions="Center" />
+ 
+            </VerticalStackLayout>
+
+        </Border>
+    </ContentPage>
+
+</TabbedPage>
