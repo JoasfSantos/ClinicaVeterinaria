@@ -5,6 +5,15 @@
              x:Class="ClinicaVet.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Style x:Key="MyBorderStyle" TargetType="Border">
+                <Setter Property="Stroke" Value="#32CD32" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 20,10,10,20" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Padding" Value="16,8" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="300" />
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
