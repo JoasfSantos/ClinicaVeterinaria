@@ -21,13 +21,7 @@
         <Image Source="banner.png" 
                HorizontalOptions="Center" />
 
-        <Border Stroke="#32CD32" 
-                StrokeThickness="2" 
-                StrokeShape="RoundRectangle 20,10,10,20" 
-                Background="White"
-                Padding="16,8" 
-                HorizontalOptions="Center"
-                WidthRequest="350">
+        <Border Style="{StaticResource MyBorderStyle}">
             
             <Entry Placeholder="Digite seu e-mail"
                    HorizontalTextAlignment="Center"
@@ -36,13 +30,7 @@
             
         </Border>
 
-        <Border Stroke="#32CD32" 
-                StrokeThickness="2" 
-                StrokeShape="RoundRectangle 20,10,10,20" 
-                Background="White"
-                Padding="16,8" 
-                HorizontalOptions="Center"
-                WidthRequest="200">
+        <Border Style="{StaticResource MyBorderStyle}">
             
             <Entry Placeholder="Digite sua senha"
                    HorizontalTextAlignment="Center"
