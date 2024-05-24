@@ -37,6 +37,15 @@
 
             <VerticalStackLayout>
                 <Image Source="agendar_banner.png" HorizontalOptions="Center" />
+                <Label Text="DATA"
+                       FontSize="20"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,-5"
+                       FontAttributes="Bold, Italic"/>
+                <Border Style="{StaticResource MyBorderStyle}">
+                    <DatePicker HorizontalOptions="Center"/>
+
+                </Border>
             </VerticalStackLayout>
 
         </Border>
@@ -44,7 +53,8 @@
     
     <!--Content Page do cadastro-->
     <ContentPage Title=""
-                 IconImageSource="cadastro.png">
+                 x:Name="CadastroColab"
+                 IconImageSource="cadastro.png" >
         <Border Stroke="#32CD32" 
                 StrokeThickness="2" 
                 StrokeShape="RoundRectangle 10,10,10,10" 
@@ -56,7 +66,13 @@
 
             <VerticalStackLayout>
                 <Image Source="cadastro_banner.png" HorizontalOptions="Center" />
- 
+                <Border Style="{StaticResource MyBorderStyle}">
+
+                    <Entry FontSize="20"
+                            Text=""
+                            HorizontalTextAlignment="Center" />
+
+                </Border>
             </VerticalStackLayout>
 
         </Border>
