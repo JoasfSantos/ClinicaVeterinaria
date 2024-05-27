@@ -1,7 +1,9 @@
 ﻿using ClinicaVet.Repositories;
 using ClinicaVet.Model;
+using ClinicaVet.View;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+
 
 namespace ClinicaVet.ViewModel;
 public partial class PagRegistroViewModel : ObservableObject
@@ -22,23 +24,11 @@ public partial class PagRegistroViewModel : ObservableObject
     [ObservableProperty]
     private bool colaborador;
 
-    private IEnumerable<Usuario> _usuarios;
-
-    public IEnumerable<Usuario> Usuarios
-    {
-        get => _usuarios;
-        set
-        {
-            _usuarios = value;
-            OnPropertyChanged();
-        }
-    }
-
     public PagRegistroViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
+
         RegistroCommand = new Command(async () => await OnRegistroClicked());
-        OnViewUsersClicked();
     }
 
     private async Task OnRegistroClicked()
@@ -60,16 +50,12 @@ public partial class PagRegistroViewModel : ObservableObject
             await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK");
 
             // Retornar para a página de login (substitua PagLogin por sua página real)
-            //await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
+            await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
         }
         catch (Exception ex)
         {
             // Exibir mensagem de erro
             await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar: {ex.Message}", "OK");
         }
-    }
-    private async Task OnViewUsersClicked()
-    {
-        _usuarios = await _unitOfWork.UsuarioRepository.GetAll();
     }
 }

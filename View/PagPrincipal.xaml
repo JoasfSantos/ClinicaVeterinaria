@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:ClinicaVet.View"
+            xmlns:vm="clr-namespace:ClinicaVet.ViewModel"
             x:Class="ClinicaVet.View.PagPrincipal"
+            x:DataType="vm:PaginaPrincipalViewModel"
             Title="">
     
     <!--Content Page dos agendamentos ativos-->
@@ -53,29 +56,9 @@
     
     <!--Content Page do cadastro-->
     <ContentPage Title=""
-                 x:Name="CadastroColab"
-                 IconImageSource="cadastro.png" >
-        <Border Stroke="#32CD32" 
-                StrokeThickness="2" 
-                StrokeShape="RoundRectangle 10,10,10,10" 
-                Background="White"
-                Padding="16,8" 
-                HorizontalOptions="Center"
-                WidthRequest="370"
-                HeightRequest="580">
-
-            <VerticalStackLayout>
-                <Image Source="cadastro_banner.png" HorizontalOptions="Center" />
-                <Border Style="{StaticResource MyBorderStyle}">
-
-                    <Entry FontSize="20"
-                            Text=""
-                            HorizontalTextAlignment="Center" />
-
-                </Border>
-            </VerticalStackLayout>
-
-        </Border>
+             x:Name="CadastroColab"
+             IconImageSource="cadastro.png"
+             IsVisible="false">
     </ContentPage>
 
 </TabbedPage>

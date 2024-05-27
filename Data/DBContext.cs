@@ -8,6 +8,7 @@ namespace ClinicaVet.Data
 {
     public class MyDbContext : DbContext
     {
+
         public DbSet<Usuario> Usuarios { get; set; }
 
         private readonly string _connectionString;
@@ -15,6 +16,9 @@ namespace ClinicaVet.Data
         public MyDbContext()
         {
             _connectionString = $"Filename={PathDB.GetPath("teste.db3")}";
+
+            Database.EnsureDeleted();
+
             Database.EnsureCreated();
         }
 

@@ -1,3 +1,4 @@
+using ClinicaVet.Model;
 using ClinicaVet.Repositories;
 using ClinicaVet.ViewModel;
 

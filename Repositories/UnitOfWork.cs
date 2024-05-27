@@ -1,4 +1,5 @@
 ﻿using ClinicaVet.Data;
+using ClinicaVet.Model;
 
 namespace ClinicaVet.Repositories;
 public interface IUnitOfWork : IDisposable
@@ -17,7 +18,10 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork()
     {
         _context = new MyDbContext();
+
         UsuarioRepository = new UsuarioRepository(_context);
+
+        UsuarioRepository.Add(new Usuario("jozz", "admin", "admin", false));
     }
 
     public async Task<int> CommitAsync()

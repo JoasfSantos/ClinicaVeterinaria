@@ -88,5 +88,6 @@
             <local:LogoLoc />
 
         </VerticalStackLayout>
+        
     </Border>
 </ContentPage>

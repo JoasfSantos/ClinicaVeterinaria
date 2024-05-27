@@ -1,57 +1,22 @@
 ﻿using ClinicaVet.Repositories;
-using ClinicaVet.Model;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using ClinicaVet.View;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 
 namespace ClinicaVet.ViewModel
 {
-    public class PagLoginViewModel : INotifyPropertyChanged
+    public partial class PagLoginViewModel : ObservableObject
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        
-        private int _idUsuario;
-
         public ICommand LoginCommand { get; }
-        public ICommand ViewUsersCommand { get; private set; }
 
-        private string _email;
-        private string _senha;
+        [ObservableProperty]
+        private string email;
 
-
-
-        public int IdUsuario
-        {
-            get => _idUsuario;
-            set
-            {
-                _idUsuario = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                _email = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Senha
-        {
-            get => _senha;
-            set
-            {
-                _senha = value;
-                OnPropertyChanged();
-            }
-        }
-
+        [ObservableProperty]
+        private string senha;
 
         public PagLoginViewModel(IUnitOfWork unitOfWork)
         {
@@ -71,8 +36,7 @@ namespace ClinicaVet.ViewModel
 
             if (usuario != null)
             {
-                // O usuário com o email e senha fornecidos foi encontrado
-                // Agora você pode proceder com a lógica de login
+                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario));
             }
             else
             {
@@ -91,12 +55,5 @@ namespace ClinicaVet.ViewModel
 
             return true;
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
     }
 }

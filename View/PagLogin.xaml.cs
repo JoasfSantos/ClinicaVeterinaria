@@ -1,6 +1,7 @@
 using ClinicaVet.Repositories;
 using ClinicaVet.ViewModel;
 
+
 namespace ClinicaVet.View
 {
     public partial class PagLogin : ContentPage
@@ -10,7 +11,9 @@ namespace ClinicaVet.View
         public PagLogin()
         {
             InitializeComponent();
+
             _unitOfWork = new UnitOfWork();
+
             BindingContext = new PagLoginViewModel(_unitOfWork);
         }
 
