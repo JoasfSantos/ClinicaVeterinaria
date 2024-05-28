@@ -11,6 +11,7 @@ public partial class PagPrincipal : TabbedPage
 	{
 		_usuario = usuario;
 
+
 		InitializeComponent();
 
         BindingContext = new PaginaPrincipalViewModel(_usuario);
