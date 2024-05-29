@@ -1,4 +1,3 @@
-using ClinicaVet.Model;
 using ClinicaVet.Repositories;
 using ClinicaVet.ViewModel;
 
@@ -11,6 +10,5 @@ public partial class PagRegistro : ContentPage
         InitializeComponent();
 
         BindingContext = new PagRegistroViewModel(unitOfWork);
-
     }
 }

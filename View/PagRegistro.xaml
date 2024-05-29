@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:ClinicaVet.ViewModel" 
              x:Class="ClinicaVet.View.PagRegistro"
              x:DataType="vm:PagRegistroViewModel"
+             IconImageSource="cadastro.png"
              Title="">
 
 
@@ -12,10 +13,10 @@
             StrokeThickness="2" 
             StrokeShape="RoundRectangle 10,10,10,10" 
             Background="White"
-            Padding="16,8" 
+            Padding="16,-50" 
             HorizontalOptions="Center"
             WidthRequest="370"
-            HeightRequest="720">
+            HeightRequest="650">
 
         <VerticalStackLayout Margin="10" Spacing="10">
             

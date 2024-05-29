@@ -21,6 +21,7 @@ namespace ClinicaVet.ViewModel
         public PagLoginViewModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+
             LoginCommand = new Command(async () => await OnLoginClicked());
         }
 
@@ -36,7 +37,7 @@ namespace ClinicaVet.ViewModel
 
             if (usuario != null)
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario));
+                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario, _unitOfWork));
             }
             else
             {

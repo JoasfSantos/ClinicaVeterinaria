@@ -15,13 +15,13 @@
             switch (status)
             {
                 case StatusAgendamento.Agendado:
-                    return "Agendado";
+                    return "AGENDADO";
                 case StatusAgendamento.EmAndamento:
-                    return "Em Andamento";
+                    return "EM ANDAMENTO";
                 case StatusAgendamento.Concluido:
-                    return "Concluído";
+                    return "CONCLUÍDO";
                 case StatusAgendamento.Cancelado:
-                    return "Cancelado";
+                    return "CANCELADO";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(status), status, null);
             }

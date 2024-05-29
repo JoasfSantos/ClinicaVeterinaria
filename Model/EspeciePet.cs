@@ -2,7 +2,8 @@
 {
     public enum EspeciePet
     {
-        Gato,
-        Cachorro
+        GATO,
+        CACHORRO,
+        PAPAGAIO
     }
 }

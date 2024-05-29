@@ -35,13 +35,7 @@ public partial class PagRegistroViewModel : ObservableObject
     {
         try
         {
-            var usuario = new Usuario(Nome, Email, Senha, Colaborador)
-            {
-                Nome = this.Nome,
-                Email = this.Email,
-                Senha = this.Senha,
-                Colaborador = false
-            };
+            var usuario = new Usuario(Nome, Email, Senha, false);
 
             await _unitOfWork.UsuarioRepository.Add(usuario);
             await _unitOfWork.CommitAsync();
