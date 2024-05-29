@@ -17,7 +17,7 @@ namespace ClinicaVet.Data
         {
             _connectionString = $"Filename={PathDB.GetPath("teste.db3")}";
 
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
 
             Database.EnsureCreated();
         }
