@@ -15,15 +15,28 @@
                 StrokeThickness="2" 
                 StrokeShape="RoundRectangle 10,10,10,10" 
                 Background="White"
-                Padding="16,8" 
+                Padding="0" 
                 HorizontalOptions="Center"
                 WidthRequest="370"
                 HeightRequest="580">
-
-            <VerticalStackLayout>
-                <Image Source="agendamentos_banner.png" HorizontalOptions="Center" />
-            </VerticalStackLayout>
-
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Image Source="agendamentos_banner.png" HorizontalOptions="Center" />
+                    <CollectionView x:Name="agendamentosListagem" 
+                                    EmptyView="Sem Agendamentos"
+                                    ItemsLayout="VerticalGrid, 2"
+                                    ItemsSource="{Binding Agendamentos}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="{Binding TipoPet}" />
+                                    <Label Text="{Binding DataAgendamento}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
         </Border>
     </ContentPage>
 
@@ -34,7 +47,7 @@
                 StrokeThickness="2" 
                 StrokeShape="RoundRectangle 10,10,10,10" 
                 Background="White"
-                Padding="16,8" 
+                Padding="10" 
                 HorizontalOptions="Center"
                 WidthRequest="370"
                 HeightRequest="580">
