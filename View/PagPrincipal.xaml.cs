@@ -29,7 +29,7 @@ namespace ClinicaVet.View
             }
 
 
-            BindingContext = new PaginaPrincipalViewModel(_usuario);
+            BindingContext = new PaginaPrincipalViewModel(_usuario, _unitOfWork);
         }
     }
 }
