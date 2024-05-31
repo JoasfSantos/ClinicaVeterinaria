@@ -10,10 +10,10 @@ namespace ClinicaVet.Repositories
         {
         }
 
-        public async Task<List<Agendamento>> GetAgendamentosByIdTutor(int idTutor)
+/*        public async Task<List<Agendamento>> GetAgendamentosByIdTutor(int idTutor)
         {
             return await Context.Set<Agendamento>().Where(a => a.IdTutor == idTutor).ToListAsync();
-        }
+        }*/
 
         public async Task<List<Agendamento>> GetAgendamentosByIdColaborador(int idColaborador)
         {

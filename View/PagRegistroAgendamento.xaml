@@ -8,7 +8,7 @@
              x:DataType="vm:RegistroAgendamentoViewModel"
              IconImageSource="agendar.png"
              Title="">
-    
+
     <Border Stroke="#32CD32"
                 StrokeThickness="2"
                 StrokeShape="RoundRectangle 10,10,10,10"
@@ -19,7 +19,7 @@
                 HeightRequest="580">
 
         <VerticalStackLayout>
-            <Image Source="agendar_banner.png" HorizontalOptions="Center" />
+            <Image Source="{Binding BannerAgendamento}" HorizontalOptions="Center" />
             <Label Text="DATA"
                        FontSize="20"
                        HorizontalOptions="Center"
@@ -48,7 +48,7 @@
                 </Picker>
 
             </Border>
-            <Button Text="AGENDAR" 
+            <Button Text="{Binding TextoBotao}" 
                         HorizontalOptions="Center" 
                         Margin="40" FontSize="15" 
                         Command="{Binding RegistroAgendamentoCommand}" />

@@ -24,7 +24,7 @@ public class UnitOfWork : IUnitOfWork
         UsuarioRepository = new UsuarioRepository(_context);
         AgendamentoRepository = new AgendamentoRepository(_context);
 
-        UsuarioRepository.Add(new Usuario("jozz", "admin", "admin", true));
+        UsuarioRepository.Add(new Usuario("jozz", "admin", "admin", false));
     }
 
     public async Task<int> CommitAsync()

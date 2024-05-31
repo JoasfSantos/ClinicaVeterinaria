@@ -22,11 +22,9 @@ namespace ClinicaVet.View
             if (_usuario.Colaborador) {
                 _pagRegistro = new PagRegistro(_unitOfWork);
                 Children.Insert(2, _pagRegistro);
-            } else
-            {
+            } 
                 _pagRegistroAgendamento = new PagRegistroAgendamento(_unitOfWork, _usuario);
                 Children.Insert(1, _pagRegistroAgendamento);
-            }
 
 
             BindingContext = new PaginaPrincipalViewModel(_usuario, _unitOfWork);

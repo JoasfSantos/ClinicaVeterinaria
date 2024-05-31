@@ -10,6 +10,7 @@ namespace ClinicaVet.Data
     {
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Agendamento> Agendamentos { get; set; }
 
         private readonly string _connectionString;
 

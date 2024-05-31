@@ -35,6 +35,12 @@ namespace ClinicaVet.Repositories
             await Context.SaveChangesAsync();
         }
 
+        public async Task Update(TEntity entity)
+        {
+            Context.Set<TEntity>().Update(entity);
+            await Context.SaveChangesAsync();
+        }
+
         public void Remove(TEntity entity)
         {
             Context.Set<TEntity>().Remove(entity);

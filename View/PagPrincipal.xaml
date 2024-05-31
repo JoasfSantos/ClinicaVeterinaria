@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:local="clr-namespace:ClinicaVet.View"
+            xmlns:local="clr-namespace:ClinicaVet.Utilidades"
             xmlns:vm="clr-namespace:ClinicaVet.ViewModel"
             xmlns:sys="clr-namespace:System;assembly=netstandard"
             x:Class="ClinicaVet.View.PagPrincipal"
@@ -11,33 +11,141 @@
     <!--Content Page dos agendamentos ativos-->
     <ContentPage Title=""
                  IconImageSource="meus_agendamentos.png">
-        <Border Stroke="#32CD32" 
-                StrokeThickness="2" 
-                StrokeShape="RoundRectangle 10,10,10,10" 
-                Background="White"
-                Padding="0" 
-                HorizontalOptions="Center"
-                WidthRequest="370"
-                HeightRequest="580">
-            <ScrollView>
-                <VerticalStackLayout>
-                    <Image Source="agendamentos_banner.png" HorizontalOptions="Center" />
-                    <CollectionView x:Name="agendamentosListagem" 
-                                    EmptyView="Sem Agendamentos"
-                                    ItemsLayout="VerticalGrid, 2"
-                                    ItemsSource="{Binding Agendamentos}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Label Text="{Binding TipoPet}" />
-                                    <Label Text="{Binding DataAgendamento}" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <local:DataConverter x:Key="DateWithoutTime"/>
+            </ResourceDictionary>
+        </ContentPage.Resources>
+        <StackLayout HorizontalOptions="Center">
+            
+            <Image Source="agendamentos_banner.png"
+                   Margin="10,-70,10,-70"/>
+ 
+        <ScrollView>
+                <Border Stroke="#32CD32" 
+                    StrokeThickness="2" 
+                    StrokeShape="RoundRectangle 10,10,10,10" 
+                    Background="White"
+                    WidthRequest="370"
+                    HeightRequest="555">
+
+                    <Grid RowDefinitions="Auto, Auto, *"
+                      RowSpacing="10">
+
+                        <CollectionView ItemsSource="{Binding Agendamentos}" Grid.Row="2">
+
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout ItemSpacing="5"
+                                                   Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+
+                                <DataTemplate x:DataType="vm:PaginaPrincipalViewModel">
+
+                                    <Border Padding="10,5" HorizontalOptions="Center" Stroke="#32CD32">
+
+                                        <Border.StrokeShape>
+
+                                            <RoundRectangle CornerRadius="5"/>
+
+                                        </Border.StrokeShape>
+
+                                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                                              ColumnDefinitions="Auto, Auto, Auto">
+
+                                            <Border Stroke="#32CD32"
+                                                    StrokeShape="RoundRectangle 30,10,10,30" >
+                                                
+                                                <Image Grid.Row="2"
+                                                   Grid.Column="2"
+                                                   Source="{Binding ImagemPet}"/>
+                                            </Border>
+
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="0" 
+                                                   Text="Nome:"
+                                                   Padding="10, 10, 10, 0"
+                                                   FontAttributes="Bold"/>
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="1" 
+                                                   HorizontalOptions="Start"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="{Binding NomeTutor}" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="Data:"
+                                                   Padding="10, 10, 10, 0"
+                                                   FontAttributes="Bold"/>
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="1" 
+                                                   HorizontalOptions="Start"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="{Binding DataAgendamento, Converter={StaticResource DateWithoutTime}}" />
+
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   FontAttributes="Bold"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="Pet:"/>
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="1" 
+                                                   HorizontalOptions="Start"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="{Binding TipoPet}"/>
+                                            <ImageButton Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Source="editar.png"
+                                                   WidthRequest="29">
+
+
+                                                <!--<Label.GestureRecognizers>
+                                                    <TapGestureRecognizer/>
+                                                        -->
+                                                <!--Command=""
+                                                        CommandParameter=""-->
+                                                <!--    
+                                                </Labem.GestureRecognizers>-->
+                                            </ImageButton>
+
+                                            <ImageButton Grid.Row="0"
+                                                   Source="eliminar.png"
+                                                   Grid.Column="2"
+                                                   WidthRequest="29">
+
+
+                                                <!--<Label.GestureRecognizers>
+                                                    <TapGestureRecognizer/>
+                                                        -->
+                                                <!--Command=""
+                                                        CommandParameter=""-->
+                                                <!--    
+                                                </Labem.GestureRecognizers>-->
+                                            </ImageButton>
+
+                                        </Grid>
+
+                                    </Border>
+
+                                </DataTemplate>
+
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+
+                    </Grid>
+
+                </Border>
+
             </ScrollView>
-        </Border>
+            
+            <ImageButton Source="atualizar.png"
+                         Command="{Binding AtualizarCommand}"
+                         WidthRequest="40"/>
+            
+        </StackLayout>
+        
     </ContentPage>
 
     <!--Content Page do usuario-->

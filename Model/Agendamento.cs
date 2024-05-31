@@ -4,26 +4,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClinicaVet.Model
 {
-    public class Agendamento(DateTime dataAgendamento, StatusAgendamento status, EspeciePet tipoPet, int idTutor, int idColaborador)
+    public class Agendamento(DateTime dataAgendamento, StatusAgendamento status, string tipoPet, int idTutor, string nomeTutor, int idColaborador)
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
         public DateTime DataAgendamento { get; set; } = dataAgendamento;
 
         [Required]
         public StatusAgendamento Status { get; set; } = status;
 
         [Required]
-        public EspeciePet TipoPet { get; set; } = tipoPet;
+        public string TipoPet { get; set; } = tipoPet;
 
         [Required]
         [ForeignKey("Usuario")]
         public int IdTutor { get; set; } = idTutor;
 
-        //public virtual Usuario Tutor { get; set; } = tutor;
+        [Required]
+        public string NomeTutor { get; set; } = nomeTutor;
+
+        //public virtual Usuario Tutor { get; set; }
 
         [Required]
         [ForeignKey("Usuario")]

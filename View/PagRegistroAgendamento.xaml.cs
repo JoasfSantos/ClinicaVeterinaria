@@ -18,7 +18,7 @@ namespace ClinicaVet.View
 
             _usuario = usuario;
 
-            BindingContext = new RegistroAgendamentoViewModel(_unitOfWork, _usuario);
+            BindingContext = new RegistroAgendamentoViewModel(_unitOfWork, _usuario, true);
         }
     }
 }
