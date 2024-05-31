@@ -21,13 +21,13 @@ namespace ClinicaVet.View
 
             if (_usuario.Colaborador) {
                 _pagRegistro = new PagRegistro(_unitOfWork);
-                Children.Insert(2, _pagRegistro);
-            } 
-                _pagRegistroAgendamento = new PagRegistroAgendamento(_unitOfWork, _usuario);
+                Children.Insert(1, _pagRegistro);
+                BindingContext = new PaginaPrincipalViewModel(_usuario, _unitOfWork, _usuario.Colaborador);
+            }else{
+                _pagRegistroAgendamento = new PagRegistroAgendamento(_unitOfWork, _usuario, false);
                 Children.Insert(1, _pagRegistroAgendamento);
-
-
-            BindingContext = new PaginaPrincipalViewModel(_usuario, _unitOfWork);
+                BindingContext = new PaginaPrincipalViewModel(_usuario, _unitOfWork, _usuario.Colaborador);
+            }
         }
     }
 }

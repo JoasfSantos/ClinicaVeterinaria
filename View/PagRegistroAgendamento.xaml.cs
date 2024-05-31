@@ -9,8 +9,10 @@ namespace ClinicaVet.View
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Usuario _usuario;
+        private readonly Agendamento _agendamento;
+        private readonly bool _fluxoEdicao;
 
-        public PagRegistroAgendamento(IUnitOfWork unitOfWork, Usuario usuario)
+        public PagRegistroAgendamento(IUnitOfWork unitOfWork, Usuario usuario, bool fluxoEdicao)
         {
             InitializeComponent();
 
@@ -18,7 +20,20 @@ namespace ClinicaVet.View
 
             _usuario = usuario;
 
-            BindingContext = new RegistroAgendamentoViewModel(_unitOfWork, _usuario, true);
+            BindingContext = new RegistroAgendamentoViewModel(_unitOfWork, _usuario, fluxoEdicao);
+        }
+
+        public PagRegistroAgendamento(IUnitOfWork unitOfWork, Agendamento agendamento, bool fluxoEdicao)
+        {
+            InitializeComponent();
+
+            _unitOfWork = unitOfWork;
+
+            _fluxoEdicao = fluxoEdicao;
+
+            _agendamento = agendamento;
+
+            BindingContext = new RegistroAgendamentoViewModel(_unitOfWork, _agendamento, _fluxoEdicao);
         }
     }
 }

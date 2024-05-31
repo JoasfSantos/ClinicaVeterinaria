@@ -9,49 +9,69 @@
              IconImageSource="agendar.png"
              Title="">
 
-    <Border Stroke="#32CD32"
+    <StackLayout>
+
+        <Image Source="{Binding BannerAgendamento}"
+               HorizontalOptions="Center"
+               Margin="10,-70,10,-70"/>
+
+        <Border Stroke="#32CD32"
                 StrokeThickness="2"
                 StrokeShape="RoundRectangle 10,10,10,10"
                 Background="White"
-                Padding="0"
                 HorizontalOptions="Center"
                 WidthRequest="370"
                 HeightRequest="580">
 
-        <VerticalStackLayout>
-            <Image Source="{Binding BannerAgendamento}" HorizontalOptions="Center" />
-            <Label Text="DATA"
-                       FontSize="20"
-                       HorizontalOptions="Center"
-                       Margin="0,0,0,-5"
-                       FontAttributes="Bold, Italic"/>
-            <Border Style="{StaticResource MyBorderStyle}">
-                <DatePicker HorizontalOptions="Center" 
-                            Format="dd/MM/yyyy"
-                            MinimumDate="{x:Static sys:DateTime.Today}"
-                            FontSize="25"
-                            Date="{Binding DataAgendamento}" />
-            </Border>
-            <Label Text="PET"
-                       FontSize="20"
-                       HorizontalOptions="Center"
-                       WidthRequest="40"
-                       Margin="0,20,0,-5"
-                       FontAttributes="Bold, Italic"/>
-            <Border Style="{StaticResource MyBorderStyle}">
-                <Picker Title="SELECIONE O TIPO DE PET"
-                        HorizontalTextAlignment="Center"
-                        ItemsSource="{Binding TiposPet}"
-                        SelectedItem="{Binding TipoPet}"
-                        FontSize="15"
-                        WidthRequest="200">
-                </Picker>
+            <StackLayout VerticalOptions="Center"
+                         Spacing="20">
+
+                <Image Source="data.png"
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0, 0, 0, -15"/>
+                
+                <Border Stroke="#32CD32"
+                        StrokeShape="RoundRectangle 20,10,10,20"                        
+                        HeightRequest="55"
+                        WidthRequest="300">
+
+
+                <DatePicker 
+                        HorizontalOptions="Center" 
+                                Format="dd/MM/yyyy"
+                                MinimumDate="{x:Static sys:DateTime.Today}"
+                                FontSize="20"
+                                Date="{Binding DataAgendamento}" />
 
             </Border>
+
+                <Image Source="animal.png"
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0, 0, 0, -15"
+                       WidthRequest="40"/>
+
+                <Border Style="{StaticResource MyBorderStyle}">
+
+                    <Picker 
+                        Title="SELECIONE O TIPO DE PET"
+                            HorizontalTextAlignment="Center"
+                            ItemsSource="{Binding TiposPet}"
+                            SelectedItem="{Binding TipoPet}"
+                            FontSize="15"
+                            WidthRequest="200">
+                    </Picker>
+
+                </Border>
+
             <Button Text="{Binding TextoBotao}" 
                         HorizontalOptions="Center" 
                         Margin="40" FontSize="15" 
                         Command="{Binding RegistroAgendamentoCommand}" />
-        </VerticalStackLayout>
-    </Border>
+
+            </StackLayout>
+
+        </Border>
+
+    </StackLayout>
+
 </ContentPage>

@@ -1,15 +1,26 @@
 ﻿using ClinicaVet.Model;
+using ClinicaVet.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ClinicaVet.Repositories;
-using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 
 namespace ClinicaVet.ViewModel
 {
     public partial class PaginaPrincipalViewModel : ObservableObject
     {
-        public ICommand AtualizarCommand { get; }
-        public ICommand TappedCommand { get; }
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly Usuario _usuario;
+
+        [ObservableProperty]
+        private bool fluxoColaborador;
+
+        [ObservableProperty]
+        private string bannerAgendamentos;
+
+        public AsyncRelayCommand<Agendamento> ExcluirCommand { get; }
+
+        public AsyncRelayCommand<Agendamento> EditarCommand { get; }
 
         [ObservableProperty]
         private List<Agendamento> agendamentos;
@@ -24,46 +35,68 @@ namespace ClinicaVet.ViewModel
         private string nomeTutor;
 
         [ObservableProperty]
-        private string imagemPet;
+        private string status;
 
-        public PaginaPrincipalViewModel(Usuario usuario, IUnitOfWork unitOfWork)
+        [ObservableProperty]
+        private string isColaborador;
+
+        public PaginaPrincipalViewModel(Usuario usuario, IUnitOfWork unitOfWork, bool fluxoColaborador)
         {
+            FluxoColaborador = fluxoColaborador;
 
-            LoadAgendamentosAsync(unitOfWork);
-            AtualizarCommand = new Command(async () => await LoadAgendamentosAsync(unitOfWork));
-            TappedCommand = new Command<Agendamento>(OnItemTapped);
-            AtualizarImagemPet();
+            _unitOfWork = unitOfWork;
 
+            _usuario = usuario;
 
+            if (FluxoColaborador) { 
+                LoadAgendamentosAsync();
+                BannerAgendamentos = "agendamento_solo.png";
+            } else
+            {
+                LoadAgendamentosTutor();
+                BannerAgendamentos = "agendamentos_banner.png";
+            }
+
+            ExcluirCommand = new AsyncRelayCommand<Agendamento>(OnExcluirClickedAsync);
+            EditarCommand = new AsyncRelayCommand<Agendamento>(OnEditarClickedAsync);
         }
-        public async Task LoadAgendamentosAsync(IUnitOfWork unitOfWork)
+
+        public async Task LoadAgendamentosAsync()
         {
-            var agendamentoEnumerable = await unitOfWork.AgendamentoRepository.GetAll();
+            var agendamentoEnumerable = await _unitOfWork.AgendamentoRepository.GetAll();
+            Agendamentos = agendamentoEnumerable.ToList();
+        }
+
+        public async Task LoadAgendamentosTutor()
+        {
+            var agendamentoEnumerable = await _unitOfWork.AgendamentoRepository.GetAgendamentosByIdTutor(_usuario.Id);
             Agendamentos = agendamentoEnumerable.ToList();
 
         }
 
-        private void OnItemTapped(Agendamento agendamento)
+        private async Task OnExcluirClickedAsync(Agendamento agendamentoSelecionado)
         {
-            var agendamentoSelecionado = agendamento;
+            _unitOfWork.AgendamentoRepository.Remove(agendamentoSelecionado);
+            verificarFluxo();
         }
 
-        public void AtualizarImagemPet()
+
+        private async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado)
         {
-            if (TipoPet.Equals("GATO"))
+            await Application.Current.MainPage.Navigation.PushAsync(new PagRegistroAgendamento(_unitOfWork, agendamentoSelecionado, true));            
+        }
+
+        private async Task verificarFluxo()
+        {
+            if (FluxoColaborador)
             {
-                ImagemPet = "gato.png";
-            }
-            else if (TipoPet.Equals("CACHORRO"))
-            {
-                ImagemPet = "cachorro.png";
+                await LoadAgendamentosAsync();
             }
             else
             {
-                ImagemPet = "papagaio.png";
+                LoadAgendamentosTutor();
             }
+
         }
-
-
     }
 }
