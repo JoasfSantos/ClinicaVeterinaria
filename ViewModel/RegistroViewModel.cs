@@ -24,7 +24,6 @@ public partial class PagRegistroViewModel : ObservableObject
     [ObservableProperty]
     private string senha;
 
-
     public PagRegistroViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;

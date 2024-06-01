@@ -30,5 +30,8 @@ namespace ClinicaVet.Model
         [Required]
         [ForeignKey("Usuario")]
         public int IdColaborador { get; set; } = idColaborador;
+
+        [NotMapped]
+        public bool IsTutor { get; set; }
     }
 }

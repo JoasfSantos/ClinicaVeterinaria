@@ -10,7 +10,7 @@ public class TipoButtonStatusConverter : IValueConverter
         {
             case "AGENDADO":
                 return "agendado.png";
-            case "EM_ANDAMENTO":
+            case "EM ANDAMENTO":
                 return "em_andamento.png";
             default:
                 return "concluido.png";

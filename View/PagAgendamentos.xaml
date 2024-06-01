@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage IconImageSource="meus_agendamentos.png"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ClinicaVet.Utilidades"
+             xmlns:vm="clr-namespace:ClinicaVet.ViewModel"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="ClinicaVet.View.PagAgendamentos"
+             x:DataType="vm:PagAgendamentosViewModel"
+             Title="">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DateConverter x:Key="DateWithoutTime"/>
+            <local:TipoPetToImagemConverter x:Key="ImageConverter"/>
+            <local:TipoButtonStatusConverter x:Key="ButtonConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <Image Source="{Binding BannerAgendamentos}"
+               Margin="10,-70,10,-70"/>
+
+        <ScrollView>
+            <Border Stroke="#32CD32" 
+                    StrokeThickness="2" 
+                    StrokeShape="RoundRectangle 10,10,10,10" 
+                    Background="White"
+                    WidthRequest="360"
+                    HeightRequest="600">
+
+                <Grid RowDefinitions="Auto, Auto, *"
+                          RowSpacing="10">
+
+                    <CollectionView ItemsSource="{Binding Agendamentos}"
+                                    Grid.Row="2"
+                                    x:Name="YourCollectionView">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="5"
+                                               Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate x:DataType="vm:PagAgendamentosViewModel">
+
+                                <Border Padding="10,5" HorizontalOptions="Center" Stroke="#32CD32"
+                                            WidthRequest="250">
+
+                                    <Border.StrokeShape>
+
+                                        <RoundRectangle CornerRadius="5"/>
+
+                                    </Border.StrokeShape>
+
+                                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                                              ColumnDefinitions="Auto, Auto, Auto, Auto">
+
+                                        <Border Stroke="#32CD32"
+                                                    StrokeShape="RoundRectangle 30, 10, 10, 30" >
+
+                                            <Image Grid.Row="2"
+                                                       Grid.Column="2"
+                                                       Source="{Binding TipoPet, Converter={StaticResource ImageConverter}}"/>
+
+                                        </Border>
+
+                                        <Label Grid.Row="1"
+                                                   Grid.Column="0" 
+                                                   Text="Nome:"
+                                                   Padding="10, 10, 10, 0"
+                                                   FontAttributes="Bold" />
+                                        <Label Grid.Row="1"
+                                                   Grid.Column="1" 
+                                                   HorizontalOptions="Start"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="{Binding NomeTutor}" />
+                                        
+                                        <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="Data:"
+                                                   Padding="10, 10, 10, 0"
+                                                   FontAttributes="Bold"/>
+                                        <Label Grid.Row="2"
+                                                   Grid.Column="1" 
+                                                   HorizontalOptions="Start"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="{Binding DataAgendamento, Converter={StaticResource DateWithoutTime}}" />
+
+                                        <Label Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   FontAttributes="Bold"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="Pet:"/>
+                                        <Label Grid.Row="3"
+                                                   Grid.Column="1" 
+                                                   HorizontalOptions="Start"
+                                                   Padding="10, 10, 10, 0"
+                                                   Text="{Binding TipoPet}"/>
+                                        
+                                        <Label Grid.Row="4"
+                                               Grid.Column="0"
+                                               FontAttributes="Bold"
+                                               Padding="10, 10, 10, 0"
+                                               Text="Status:"/>
+                                        <Label Grid.Row="4"
+                                               Grid.Column="1" 
+                                               HorizontalOptions="Start"
+                                               Padding="10, 10, 10, 0"
+                                               Text="{Binding Status}">
+                                        </Label>
+
+                                        <Image Source="editar.png"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               WidthRequest="29">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.EditarCommand, Source={x:Reference Name=YourCollectionView}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                        <Image Source="eliminar.png"
+                                               Grid.Row="0"
+                                               Grid.Column="2"
+                                               IsEnabled="False"
+                                               WidthRequest="29">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ExcluirCommand, Source={x:Reference Name=YourCollectionView}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                        <Image Source="{Binding Status, Converter={StaticResource ButtonConverter}}"
+                                               IsEnabled="{Binding IsTutor}"
+                                               Grid.Row="4"
+                                               Grid.Column="3"
+                                               WidthRequest="29"
+                                               Margin="0,0,-35,0">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.AtualizarCommand, Source={x:Reference Name=YourCollectionView}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                </Grid>
+
+            </Border>
+
+        </ScrollView>
+
+    </StackLayout>
+
+</ContentPage>

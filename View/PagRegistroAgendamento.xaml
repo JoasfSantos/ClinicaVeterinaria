@@ -22,55 +22,57 @@
                 HorizontalOptions="Center"
                 WidthRequest="370"
                 HeightRequest="580">
+            
             <StackLayout>
 
-                    <FlexLayout Direction="Row"
-                                HorizontalOptions="Center">
-
-                        <Image Source="data.png"
-                               WidthRequest="30"
-                               HeightRequest="30"
-                               Margin="10, 118, 0, -38"/>
-
-                        <Border Stroke="#32CD32"
-                                StrokeShape="RoundRectangle 20,10,10,20"                        
-                                HeightRequest="55"
-                                WidthRequest="300"
-                                Margin="-20, 110, 0, -30">
-
-                            <DatePicker HorizontalOptions="Center" 
-                                        Format="dd/MM/yyyy"
-                                        MinimumDate="{x:Static sys:DateTime.Today}"
-                                        FontSize="20"
-                                        Date="{Binding DataAgendamento}" />
-                        </Border>
-
-                    </FlexLayout>
-
                 <FlexLayout Direction="Row"
-                                HorizontalOptions="Center">
+                            HorizontalOptions="Center">
 
-                    <Image Source="animal.png"
-                               WidthRequest="30"
-                               HeightRequest="30"
-                               Margin="10, 18, 0, 0"/>
+                    <Image Source="data.png"
+                           WidthRequest="30"
+                           HeightRequest="30"
+                           Margin="10, 118, 0, -38"/>
 
                     <Border Stroke="#32CD32"
-                                StrokeShape="RoundRectangle 20,10,10,20"                        
-                                HeightRequest="55"
-                                WidthRequest="300"
-                                Margin="-20, 10, 0, 0">
+                            StrokeShape="RoundRectangle 20,10,10,20"                        
+                            HeightRequest="55"
+                            WidthRequest="300"
+                            Margin="-20, 110, 0, -30">
 
-                        <Picker Title="SELECIONE O TIPO DE PET"
-                                    HorizontalTextAlignment="Center"
-                                    ItemsSource="{Binding TiposPet}"
-                                    SelectedItem="{Binding TipoPet}"
-                                    FontSize="15"
-                                    WidthRequest="200"/>
-
+                        <DatePicker HorizontalOptions="Center" 
+                                    Format="dd/MM/yyyy"
+                                    MinimumDate="{x:Static sys:DateTime.Today}"
+                                    FontSize="20"
+                                    Date="{Binding DataAgendamento}" />
+                        
                     </Border>
+
                 </FlexLayout>
 
+                <FlexLayout Direction="Row"
+                            HorizontalOptions="Center">
+
+                    <Image Source="animal.png"
+                           WidthRequest="30"
+                           HeightRequest="30"
+                           Margin="10, 18, 0, 0"/>
+
+                    <Border Stroke="#32CD32"
+                            StrokeShape="RoundRectangle 20,10,10,20"                        
+                            HeightRequest="55"
+                            WidthRequest="300"
+                            Margin="-20, 10, 0, 0">
+
+                        <Picker Title="SELECIONE O TIPO DE PET"
+                                HorizontalTextAlignment="Center"
+                                ItemsSource="{Binding TiposPet}"
+                                SelectedItem="{Binding TipoPet}"
+                                FontSize="15"
+                                WidthRequest="200"/>
+
+                    </Border>
+                    
+                </FlexLayout>
 
                 <Button Text="{Binding TextoBotao}" 
                         HorizontalOptions="Center" 
