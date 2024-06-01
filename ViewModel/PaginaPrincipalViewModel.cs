@@ -37,9 +37,6 @@ namespace ClinicaVet.ViewModel
         [ObservableProperty]
         private string status;
 
-        [ObservableProperty]
-        private string isColaborador;
-
         public PaginaPrincipalViewModel(Usuario usuario, IUnitOfWork unitOfWork, bool fluxoColaborador)
         {
             FluxoColaborador = fluxoColaborador;

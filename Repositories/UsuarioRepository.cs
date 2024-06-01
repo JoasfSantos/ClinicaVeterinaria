@@ -14,4 +14,9 @@ public class UsuarioRepository : Repository<Usuario>
     {
         return await Context.Set<Usuario>().FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
     }
+
+    public async Task<Usuario> GetUserByEmail(string email)
+    {
+        return await Context.Set<Usuario>().FirstOrDefaultAsync(u => u.Email == email);
+    }
 }

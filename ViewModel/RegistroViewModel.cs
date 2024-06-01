@@ -3,11 +3,14 @@ using ClinicaVet.Model;
 using ClinicaVet.View;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Text.RegularExpressions;
 
 
 namespace ClinicaVet.ViewModel;
 public partial class PagRegistroViewModel : ObservableObject
 {
+    private readonly string _regexEmail = @"^[a-zA-Z0-9_-]+@[a-z]+\.com(\.br)?$";
+    private readonly Regex _regex;
     private readonly IUnitOfWork _unitOfWork;
 
     public ICommand RegistroCommand { get; }
@@ -21,35 +24,75 @@ public partial class PagRegistroViewModel : ObservableObject
     [ObservableProperty]
     private string senha;
 
-    [ObservableProperty]
-    private bool colaborador;
 
     public PagRegistroViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
 
         RegistroCommand = new Command(async () => await OnRegistroClicked());
+
+        _regex = new Regex(_regexEmail);
     }
 
     private async Task OnRegistroClicked()
     {
         try
         {
-            var usuario = new Usuario(Nome, Email, Senha, false);
+            bool emailValido = ValidarEmail(Email);
+            bool senhaValida = ValidarSenha(Senha);
 
-            await _unitOfWork.UsuarioRepository.Add(usuario);
-            await _unitOfWork.CommitAsync();
+            if (emailValido && senhaValida)
+            {
+                var usuarioRetornado = await _unitOfWork.UsuarioRepository.GetUserByEmail(Email);
 
-            // Exibir mensagem de sucesso
-            await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK");
+                if (usuarioRetornado == null)
+                {
+                    var usuario = new Usuario(Nome, Email, Senha, false);
+                    await _unitOfWork.UsuarioRepository.Add(usuario);
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK");
+                    await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erro", $"O e-mail: {Email}, já existente na base de dados", "OK");
+                }
+            }
+            else
+            {
+                if (!emailValido)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erro", $"O e-mail: {Email} é inválido.", "OK");
+                }
 
-            // Retornar para a página de login (substitua PagLogin por sua página real)
-            await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
+                if (!senhaValida)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erro", "A senha deve ter oito caracteres.", "OK");
+                }
+            }
         }
         catch (Exception ex)
         {
-            // Exibir mensagem de erro
+            // Exibir mensagem de erro genérica
             await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar: {ex.Message}", "OK");
         }
+    }
+
+    private bool ValidarEmail(string email)
+    {
+        Match match = _regex.Match(email);
+
+        if (match.Success)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool ValidarSenha(string senha)
+    {
+        return senha.Length == 8;
     }
 }
