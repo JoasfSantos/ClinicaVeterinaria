@@ -22,48 +22,57 @@
                 HorizontalOptions="Center"
                 WidthRequest="370"
                 HeightRequest="580">
+            <StackLayout>
 
-            <StackLayout VerticalOptions="Center"
-                         Spacing="20">
+                    <FlexLayout Direction="Row"
+                                HorizontalOptions="Center">
 
-                <Image Source="data.png"
-                       HorizontalOptions="FillAndExpand"
-                       Margin="0, 0, 0, -15"/>
-                
-                <Border Stroke="#32CD32"
-                        StrokeShape="RoundRectangle 20,10,10,20"                        
-                        HeightRequest="55"
-                        WidthRequest="300">
+                        <Image Source="data.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               Margin="10, 118, 0, -38"/>
+
+                        <Border Stroke="#32CD32"
+                                StrokeShape="RoundRectangle 20,10,10,20"                        
+                                HeightRequest="55"
+                                WidthRequest="300"
+                                Margin="-20, 110, 0, -30">
+
+                            <DatePicker HorizontalOptions="Center" 
+                                        Format="dd/MM/yyyy"
+                                        MinimumDate="{x:Static sys:DateTime.Today}"
+                                        FontSize="20"
+                                        Date="{Binding DataAgendamento}" />
+                        </Border>
+
+                    </FlexLayout>
+
+                <FlexLayout Direction="Row"
+                                HorizontalOptions="Center">
+
+                    <Image Source="animal.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               Margin="10, 18, 0, 0"/>
+
+                    <Border Stroke="#32CD32"
+                                StrokeShape="RoundRectangle 20,10,10,20"                        
+                                HeightRequest="55"
+                                WidthRequest="300"
+                                Margin="-20, 10, 0, 0">
+
+                        <Picker Title="SELECIONE O TIPO DE PET"
+                                    HorizontalTextAlignment="Center"
+                                    ItemsSource="{Binding TiposPet}"
+                                    SelectedItem="{Binding TipoPet}"
+                                    FontSize="15"
+                                    WidthRequest="200"/>
+
+                    </Border>
+                </FlexLayout>
 
 
-                <DatePicker 
-                        HorizontalOptions="Center" 
-                                Format="dd/MM/yyyy"
-                                MinimumDate="{x:Static sys:DateTime.Today}"
-                                FontSize="20"
-                                Date="{Binding DataAgendamento}" />
-
-            </Border>
-
-                <Image Source="animal.png"
-                       HorizontalOptions="FillAndExpand"
-                       Margin="0, 0, 0, -15"
-                       WidthRequest="40"/>
-
-                <Border Style="{StaticResource MyBorderStyle}">
-
-                    <Picker 
-                        Title="SELECIONE O TIPO DE PET"
-                            HorizontalTextAlignment="Center"
-                            ItemsSource="{Binding TiposPet}"
-                            SelectedItem="{Binding TipoPet}"
-                            FontSize="15"
-                            WidthRequest="200">
-                    </Picker>
-
-                </Border>
-
-            <Button Text="{Binding TextoBotao}" 
+                <Button Text="{Binding TextoBotao}" 
                         HorizontalOptions="Center" 
                         Margin="40" FontSize="15" 
                         Command="{Binding RegistroAgendamentoCommand}" />
