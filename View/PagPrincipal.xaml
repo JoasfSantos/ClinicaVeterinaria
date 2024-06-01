@@ -163,23 +163,97 @@
     </ContentPage>
 
     <!--Content Page do usuario-->
-    <ContentPage Title="USUÁRIO"
+    <ContentPage Title=""
                  IconImageSource="usuario.png">
-        <Border Stroke="#32CD32" 
-                StrokeThickness="2" 
-                StrokeShape="RoundRectangle 10,10,10,10" 
-                Background="White"
-                Padding="10" 
-                HorizontalOptions="Center"
-                WidthRequest="370"
-                HeightRequest="580">
+        
+        <StackLayout>
+            
+            <Image Source="usuario_banner.png" 
+                   Margin="2, -70, 2, -80"/>
+            
+            <Border Stroke="#32CD32" 
+                    StrokeThickness="2" 
+                    StrokeShape="RoundRectangle 10,10,10,10" 
+                    Background="White"
+                    Padding="10" 
+                    HorizontalOptions="Center"
+                    WidthRequest="370"
+                    HeightRequest="580">
+                <StackLayout>
+                    
+                    <FlexLayout Direction="Row"
+                                HorizontalOptions="Center">
 
-            <Button Text="SAIR" 
+                        <Image Source="nome.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               Margin="10, 118, 0, -38"/>
+
+                        <Border Stroke="#32CD32"
+                                StrokeShape="RoundRectangle 20,10,10,20"                        
+                                HeightRequest="55"
+                                WidthRequest="300"
+                                Margin="-20, 110, 0, -30">
+
+                            <Label HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   Text="O NOME VAI AQUI" />
+
+                        </Border>
+
+                    </FlexLayout>
+                    
+                    <FlexLayout Direction="Row"
+                                HorizontalOptions="Center">
+                    
+                        <Image Source="email.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               Margin="10, 18, 0, 0"/>
+
+                        <Border Stroke="#32CD32"
+                                StrokeShape="RoundRectangle 20,10,10,20"                        
+                                HeightRequest="55"
+                                WidthRequest="300"
+                                Margin="-20, 10, 0, 0">
+
+                            <Label HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   Text="O EMAIL VAI AQUI" />
+
+                        </Border>
+
+                    </FlexLayout>
+                
+                    <FlexLayout Direction="Row"
+                                HorizontalOptions="Center">
+
+                        <Image Source="senha.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               Margin="10, 18, 0, 0"/>
+
+                        <Border Stroke="#32CD32"
+                                StrokeShape="RoundRectangle 20,10,10,20"                        
+                                HeightRequest="55"
+                                WidthRequest="300"
+                                Margin="-20, 10, 0, 0">
+
+                            <Label HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   Text="SENHA VAI AQUI???" />
+
+                        </Border>
+
+                    </FlexLayout>
+                    <Button Text="SAIR" 
                         HorizontalOptions="Center" 
                         Margin="40"
                         HeightRequest="40"
+                        WidthRequest="100"
                         FontSize="15"/>
-
-        </Border>
+                </StackLayout>
+            </Border>
+        </StackLayout>
     </ContentPage>
 </TabbedPage>
