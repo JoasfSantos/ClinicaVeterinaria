@@ -18,9 +18,6 @@ namespace ClinicaVet.ViewModel
         [ObservableProperty]
         private string bannerAgendamentos;
 
-        [ObservableProperty]
-        private string statusButton;
-
         public AsyncRelayCommand<Agendamento> ExcluirCommand { get; }
 
         public AsyncRelayCommand<Agendamento> EditarCommand { get; }
@@ -130,12 +127,5 @@ namespace ClinicaVet.ViewModel
             await _unitOfWork.AgendamentoRepository.Update(agendamento);
             verificarFluxo();
         }
-
-        private async Task atualizarStatusButton(Agendamento agendamento)
-        {
-            var statusAtual = agendamento.Status;
-
-        }
-
     }
 }

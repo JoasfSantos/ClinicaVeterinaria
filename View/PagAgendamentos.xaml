@@ -55,60 +55,69 @@
 
                                     </Border.StrokeShape>
 
-                                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-                                              ColumnDefinitions="Auto, Auto, Auto, Auto">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="65" />
+                                            <ColumnDefinition Width="111" />
+                                            <ColumnDefinition Width="30" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
 
                                         <Border Stroke="#32CD32"
-                                                    StrokeShape="RoundRectangle 30, 10, 10, 30" >
+                                                StrokeShape="RoundRectangle 30, 10, 10, 30"
+                                                Margin="0, 0, 0, 5">
 
-                                            <Image Grid.Row="2"
-                                                       Grid.Column="2"
-                                                       Source="{Binding TipoPet, Converter={StaticResource ImageConverter}}"/>
+                                            <Image Source="{Binding TipoPet, Converter={StaticResource ImageConverter}}"/>
 
                                         </Border>
 
                                         <Label Grid.Row="1"
-                                                   Grid.Column="0" 
-                                                   Text="Nome:"
-                                                   Padding="10, 10, 10, 0"
-                                                   FontAttributes="Bold" />
+                                               Grid.Column="0" 
+                                               Text="Nome:"
+                                               FontAttributes="Bold" />
                                         <Label Grid.Row="1"
-                                                   Grid.Column="1" 
-                                                   HorizontalOptions="Start"
-                                                   Padding="10, 10, 10, 0"
-                                                   Text="{Binding NomeTutor}" />
+                                               Grid.Column="1" 
+                                               HorizontalOptions="Start"
+                                               Padding="0, 0, 0, 0"
+                                               Text="{Binding NomeTutor}" />
                                         
                                         <Label Grid.Row="2"
-                                                   Grid.Column="0"
-                                                   Text="Data:"
-                                                   Padding="10, 10, 10, 0"
-                                                   FontAttributes="Bold"/>
+                                               Grid.Column="0"
+                                               Text="Data:"
+                                               Padding="0, 0, 0, 0"
+                                               FontAttributes="Bold"/>
                                         <Label Grid.Row="2"
-                                                   Grid.Column="1" 
-                                                   HorizontalOptions="Start"
-                                                   Padding="10, 10, 10, 0"
-                                                   Text="{Binding DataAgendamento, Converter={StaticResource DateWithoutTime}}" />
+                                               Grid.Column="1" 
+                                               HorizontalOptions="Start"
+                                               Padding="0, 0, 0, 0"
+                                               Text="{Binding DataAgendamento, Converter={StaticResource DateWithoutTime}}" />
 
                                         <Label Grid.Row="3"
-                                                   Grid.Column="0"
-                                                   FontAttributes="Bold"
-                                                   Padding="10, 10, 10, 0"
-                                                   Text="Pet:"/>
+                                               Grid.Column="0"
+                                               FontAttributes="Bold"
+                                               Padding="0, 0, 0, 0"
+                                               Text="Pet:"/>
                                         <Label Grid.Row="3"
-                                                   Grid.Column="1" 
-                                                   HorizontalOptions="Start"
-                                                   Padding="10, 10, 10, 0"
-                                                   Text="{Binding TipoPet}"/>
+                                               Grid.Column="1" 
+                                               HorizontalOptions="Start"
+                                               Padding="0, 0, 0, 0"
+                                               Text="{Binding TipoPet}"/>
                                         
                                         <Label Grid.Row="4"
                                                Grid.Column="0"
                                                FontAttributes="Bold"
-                                               Padding="10, 10, 10, 0"
+                                               Padding="0, 0, 0, 0"
                                                Text="Status:"/>
                                         <Label Grid.Row="4"
                                                Grid.Column="1" 
                                                HorizontalOptions="Start"
-                                               Padding="10, 10, 10, 0"
+                                               Padding="0, 0, 0, 0"
                                                Text="{Binding Status}">
                                         </Label>
 
@@ -125,7 +134,6 @@
                                         <Image Source="eliminar.png"
                                                Grid.Row="0"
                                                Grid.Column="2"
-                                               IsEnabled="False"
                                                WidthRequest="29">
                                             <Image.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.ExcluirCommand, Source={x:Reference Name=YourCollectionView}}"
@@ -137,8 +145,10 @@
                                                IsEnabled="{Binding IsTutor}"
                                                Grid.Row="4"
                                                Grid.Column="3"
-                                               WidthRequest="29"
-                                               Margin="0,0,-35,0">
+                                               WidthRequest="30"
+                                               HeightRequest="30"
+                                               Margin="46, 0, 0, 3">
+                                            
                                             <Image.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.AtualizarCommand, Source={x:Reference Name=YourCollectionView}}"
                                                                       CommandParameter="{Binding .}" />
