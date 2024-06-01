@@ -16,38 +16,54 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <VerticalStackLayout Margin="20" Spacing="20">
+    <StackLayout Margin="20" Spacing="20" HorizontalOptions="Center">
 
         <Image Source="banner.png" 
                HorizontalOptions="Center" />
 
         <Border Style="{StaticResource MyBorderStyle}">
-            
-            <Entry Placeholder="Digite seu e-mail"
-                   HorizontalTextAlignment="Center"
-                   Style="{StaticResource MyEntryStyle}"
-                   Text="{Binding Email}"/>
-            
+            <FlexLayout HorizontalOptions="Center" Direction="Row">
+                
+                <Image Source="email.png" 
+                                   Margin="0,0,10,0"/>
+
+
+                        <Entry Placeholder="Digite seu e-mail"
+                               HorizontalTextAlignment="Start"
+                               FontSize="20"
+                               Style="{StaticResource MyEntryStyle}"
+                               Text="{Binding Email}"
+                               WidthRequest="250"/>
+                     
+            </FlexLayout>
         </Border>
 
         <Border Style="{StaticResource MyBorderStyle}">
-            
-            <Entry Placeholder="Digite sua senha"
-                   HorizontalTextAlignment="Center"
-                   Style="{StaticResource MyEntryStyle}"
-                   IsPassword="True"
-                   Text="{Binding Senha}"
-                   WidthRequest="170"
-                   MaxLength="8" />
-            
+            <FlexLayout HorizontalOptions="Center" Direction="Row">
+
+                <Image Source="senha.png" 
+                               Margin="0,0,10,0"/>
+
+
+                <Entry Placeholder="Digite sua senha"
+                       HorizontalTextAlignment="Start"
+                       Style="{StaticResource MyEntryStyle}"
+                       IsPassword="True"
+                       Text="{Binding Senha}"
+                       FontSize="20"
+                       WidthRequest="250"
+                       MaxLength="8" />
+
+            </FlexLayout>
         </Border>
 
+       
         <Button x:Name="loginBtn"           
-                Text="ENTRAR" 
+                Text="Entrar" 
                 FontSize="20"
                 Command="{Binding LoginCommand}"
-                HorizontalOptions="Center"
-                BackgroundColor="Green" />
+                HorizontalOptions="Center" 
+                Margin="10,30, 10, 0"/>
 
         <Button x:Name="registroBtn"
                 Text="Novo aqui? Registre-se!"
@@ -58,6 +74,5 @@
                 FontSize="15" />
 
         <local:LogoLoc/>
-
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>
