@@ -12,6 +12,7 @@ namespace ClinicaVet.ViewModel
         private readonly IUnitOfWork _unitOfWork;
         private readonly Usuario _usuario;
 
+
         [ObservableProperty]
         private bool fluxoColaborador;
 
@@ -87,31 +88,38 @@ namespace ClinicaVet.ViewModel
 
         private async Task OnExcluirClickedAsync(Agendamento agendamentoSelecionado)
         {
-            _unitOfWork.AgendamentoRepository.Remove(agendamentoSelecionado);
-            verificarFluxo();
-        }
-
-
-        private async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado)
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(new PagRegistroAgendamento(_unitOfWork, agendamentoSelecionado, true));            
-        }
-
-        private async Task verificarFluxo()
-        {
-            if (FluxoColaborador)
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o agendamento?", "OK", "Cancelar");
+            if (!confirmacao)
             {
-                await LoadAgendamentosAsync();
+                return;
             }
             else
             {
-                LoadAgendamentosTutor();
+                _unitOfWork.AgendamentoRepository.Remove(agendamentoSelecionado);
+                verificarFluxo();
             }
+        }
 
+        private async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado)
+        {
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja editar o agendamento?", "OK", "Cancelar");
+            if (!confirmacao)
+            {
+                return;
+            }
+            else
+            {
+            await Application.Current.MainPage.Navigation.PushAsync(new PagRegistroAgendamento(_unitOfWork, agendamentoSelecionado, true));            
+            }
         }
 
         private async Task OnEditarStatusAgendamento(Agendamento agendamento)
         {
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar o status do agendamento?", "OK", "Cancelar");
+            if (!confirmacao)
+            {
+                return;
+            }
             var novoStatus = "";
             var statusAtual = agendamento.Status;
             switch (statusAtual)
@@ -126,6 +134,19 @@ namespace ClinicaVet.ViewModel
             agendamento.Status = novoStatus;
             await _unitOfWork.AgendamentoRepository.Update(agendamento);
             verificarFluxo();
+        }
+
+
+        private async Task verificarFluxo()
+        {
+            if (FluxoColaborador)
+            {
+                await LoadAgendamentosAsync();
+            }
+            else
+            {
+                LoadAgendamentosTutor();
+            }
         }
     }
 }

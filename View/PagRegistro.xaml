@@ -19,7 +19,7 @@
                 Padding="16,-50"
                 HorizontalOptions="Center"
                 WidthRequest="370"
-                HeightRequest="650">
+                HeightRequest="620">
             <StackLayout VerticalOptions="Center" Padding="10" Spacing="20" HorizontalOptions="Center">
                 <FlexLayout HorizontalOptions="Center" Direction="Row">
 

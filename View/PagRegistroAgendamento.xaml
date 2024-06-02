@@ -39,7 +39,8 @@
                             WidthRequest="300"
                             Margin="-20, 110, 0, -30">
 
-                        <DatePicker HorizontalOptions="Center" 
+                        <DatePicker HorizontalOptions="Center"
+                                    WidthRequest="115"
                                     Format="dd/MM/yyyy"
                                     MinimumDate="{x:Static sys:DateTime.Today}"
                                     FontSize="20"
@@ -63,12 +64,13 @@
                             WidthRequest="300"
                             Margin="-20, 10, 0, 0">
 
-                        <Picker Title="SELECIONE O TIPO DE PET"
+                        <Picker Title="PET"
                                 HorizontalTextAlignment="Center"
+                                VerticalOptions="End"
                                 ItemsSource="{Binding TiposPet}"
                                 SelectedItem="{Binding TipoPet}"
-                                FontSize="15"
-                                WidthRequest="200"/>
+                                FontSize="18"
+                                WidthRequest="112"/>
 
                     </Border>
                     

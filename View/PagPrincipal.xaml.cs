@@ -1,5 +1,4 @@
 using ClinicaVet.Model;
-using ClinicaVet.ViewModel;
 using ClinicaVet.Repositories;
 
 namespace ClinicaVet.View
@@ -32,6 +31,7 @@ namespace ClinicaVet.View
                 Children.Insert(1, _pagRegistroAgendamento);
             }
 
+            CurrentPage = _pagAgendamentos;
         }
     }
 }

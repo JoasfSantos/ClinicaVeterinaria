@@ -49,7 +49,7 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
     {
         FluxoEdicao = fluxoEdicao;
 
-        TextoBotao = "AGENDAR";
+        TextoBotao = "Agendar";
 
         BannerAgendamento = "agendar_banner.png";
 
@@ -72,7 +72,7 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
 
         _agedamento = agendamento;
 
-        TextoBotao = "SALVAR";
+        TextoBotao = "Salvar";
 
         BannerAgendamento = "editar_agendamento.png";
 
@@ -119,7 +119,7 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
         catch (Exception ex)
         {
             // Exibir mensagem de erro
-            await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar: {ex.Message}\nDetalhes: {ex.InnerException?.Message}", "OK");
+            await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
         }
 
     }
@@ -130,14 +130,10 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
 
     private bool validarCadastroAgendamento()
     {
-        // Verifica se algum atributo é nulo
         if (TipoPet == null)
         {
             return false;
         }
-        // Se nenhum atributo for nulo, retorna true
         return true;
     }
-
-
 }

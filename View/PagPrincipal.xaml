@@ -8,10 +8,6 @@
             x:DataType="vm:PaginaPrincipalViewModel"
             Title="">
 
-    <!--Content Page dos agendamentos ativos-->
-
-
-    <!--Content Page do usuario-->
     <ContentPage Title=""
                  IconImageSource="usuario.png">
         
@@ -28,6 +24,7 @@
                     HorizontalOptions="Center"
                     WidthRequest="370"
                     HeightRequest="580">
+                
                 <StackLayout>
                     
                     <FlexLayout Direction="Row"
@@ -95,12 +92,12 @@
                         </Border>
 
                     </FlexLayout>
-                    <Button Text="SAIR" 
-                        HorizontalOptions="Center" 
-                        Margin="40"
-                        HeightRequest="40"
-                        WidthRequest="100"
-                        FontSize="15"/>
+                    <Button Text="Sair" 
+                            HorizontalOptions="Center" 
+                            Margin="40"
+                            HeightRequest="40"
+                            WidthRequest="100"
+                            FontSize="15"/>
                 </StackLayout>
             </Border>
         </StackLayout>
