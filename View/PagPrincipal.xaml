@@ -10,12 +10,12 @@
 
     <ContentPage Title=""
                  IconImageSource="usuario.png">
-        
+
         <StackLayout>
-            
+
             <Image Source="usuario_banner.png" 
                    Margin="2, -70, 2, -80"/>
-            
+
             <Border Stroke="#32CD32" 
                     StrokeThickness="2" 
                     StrokeShape="RoundRectangle 10,10,10,10" 
@@ -24,9 +24,13 @@
                     HorizontalOptions="Center"
                     WidthRequest="370"
                     HeightRequest="580">
-                
-                <StackLayout>
-                    
+
+                <StackLayout >
+
+                    <ImageButton Source="sair.png"
+                                 HorizontalOptions="End"
+                                 Margin="0,0,0,-90"/>
+
                     <FlexLayout Direction="Row"
                                 HorizontalOptions="Center">
 
@@ -40,18 +44,25 @@
                                 HeightRequest="55"
                                 WidthRequest="300"
                                 Margin="-20, 110, 0, -30">
-
-                            <Label HorizontalTextAlignment="Center"
+                            <StackLayout VerticalOptions="Center">
+                                <Label HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       Text="{Binding Nome}" 
+                                       IsVisible="{Binding LabelIsVisible}"/>
+                                
+                            <Entry HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="Center"
-                                   Text="O NOME VAI AQUI" />
-
+                                   WidthRequest="200"
+                                   IsVisible="{Binding EntryIsVisible}"
+                                   Text="{Binding NomeNovo}"/>
+                            </StackLayout>
                         </Border>
 
                     </FlexLayout>
-                    
+
                     <FlexLayout Direction="Row"
                                 HorizontalOptions="Center">
-                    
+
                         <Image Source="email.png"
                                WidthRequest="30"
                                HeightRequest="30"
@@ -62,43 +73,65 @@
                                 HeightRequest="55"
                                 WidthRequest="300"
                                 Margin="-20, 10, 0, 0">
-
-                            <Label HorizontalTextAlignment="Center"
-                                   VerticalTextAlignment="Center"
-                                   Text="O EMAIL VAI AQUI" />
-
-                        </Border>
+                            
+                            <StackLayout VerticalOptions="Center">
+                                <Label HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       IsVisible="{Binding LabelIsVisible}"
+                                       Text="{Binding Email}" />
+                                
+                                <Entry HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       WidthRequest="200"
+                                       IsVisible="{Binding EntryIsVisible}"
+                                       Text="{Binding EmailNovo}"/>
+                            </StackLayout>
+                            
+                    </Border>
 
                     </FlexLayout>
-                
+
                     <FlexLayout Direction="Row"
                                 HorizontalOptions="Center">
 
                         <Image Source="senha.png"
                                WidthRequest="30"
                                HeightRequest="30"
-                               Margin="10, 18, 0, 0"/>
+                               IsEnabled="True"
+                               Margin="10, 18, 0, 0">
+                        </Image>
 
                         <Border Stroke="#32CD32"
                                 StrokeShape="RoundRectangle 20,10,10,20"                        
                                 HeightRequest="55"
                                 WidthRequest="300"
                                 Margin="-20, 10, 0, 0">
+                            <StackLayout VerticalOptions="Center">
+                                <Label HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="End"
+                                       Text="{Binding Senha}" 
+                                       IsVisible="{Binding LabelIsVisible}"/>
 
-                            <Label HorizontalTextAlignment="Center"
-                                   VerticalTextAlignment="Center"
-                                   Text="SENHA VAI AQUI???" />
-
+                                <Entry HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       WidthRequest="200"
+                                       IsPassword="True"
+                                       IsVisible="{Binding EntryIsVisible}"
+                                       Text="{Binding SenhaNovo}"/>
+                            </StackLayout>
                         </Border>
 
                     </FlexLayout>
-                    <Button Text="Sair" 
-                            HorizontalOptions="Center" 
-                            Margin="40"
-                            HeightRequest="40"
-                            WidthRequest="100"
-                            FontSize="15"/>
+
+                    <Button Text="{Binding ButtonText}" 
+                        HorizontalOptions="Center" 
+                        Margin="0,40,0,-80"
+                        HeightRequest="40"
+                        WidthRequest="100"
+                        FontSize="15"
+                        Command="{Binding EditarCommand}"/>
                 </StackLayout>
+
             </Border>
         </StackLayout>
     </ContentPage>
