@@ -1,5 +1,6 @@
 using ClinicaVet.Model;
 using ClinicaVet.Repositories;
+using ClinicaVet.ViewModel;
 
 namespace ClinicaVet.View
 {
@@ -32,6 +33,7 @@ namespace ClinicaVet.View
             }
 
             CurrentPage = _pagAgendamentos;
+            BindingContext = new PaginaPrincipalViewModel(_unitOfWork, _usuario);
         }
     }
 }
