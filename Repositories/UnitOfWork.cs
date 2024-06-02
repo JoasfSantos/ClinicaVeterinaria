@@ -24,7 +24,7 @@ public class UnitOfWork : IUnitOfWork
         UsuarioRepository = new UsuarioRepository(_context);
         AgendamentoRepository = new AgendamentoRepository(_context);
 
-        UsuarioRepository.Add(new Usuario("jozz", "admin", "admin", true));
+        _ = UsuarioRepository.Add(new Usuario("Jozz", "admin", "admin", true));
     }
 
     public async Task<int> CommitAsync()
@@ -32,8 +32,5 @@ public class UnitOfWork : IUnitOfWork
         return await _context.SaveChangesAsync();
     }
 
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
+    public void Dispose() => _context.Dispose();
 }

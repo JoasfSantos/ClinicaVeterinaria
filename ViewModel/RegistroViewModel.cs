@@ -1,20 +1,20 @@
-﻿using ClinicaVet.Repositories;
+﻿#nullable disable
+using ClinicaVet.Repositories;
 using ClinicaVet.Model;
 using ClinicaVet.View;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Text.RegularExpressions;
+using ClinicaVet.Utilidades;
 
 
 namespace ClinicaVet.ViewModel;
 public partial class PagRegistroViewModel : ObservableObject
 {
-    private readonly string _regexEmail = @"^[a-zA-Z0-9_-]+@[a-z]+\.com(\.br)?$";
-    private readonly Regex _regex;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly bool _isColaborador;
+    private readonly ValidadorEmail _validadorEmail;
 
     public ICommand RegistroCommand { get; }
-
     [ObservableProperty]
     private string nome;
 
@@ -24,20 +24,22 @@ public partial class PagRegistroViewModel : ObservableObject
     [ObservableProperty]
     private string senha;
 
-    public PagRegistroViewModel(IUnitOfWork unitOfWork)
+    public PagRegistroViewModel(IUnitOfWork unitOfWork, bool colaborador)
     {
         _unitOfWork = unitOfWork;
 
+        _isColaborador = colaborador;
+
         RegistroCommand = new Command(async () => await OnRegistroClicked());
 
-        _regex = new Regex(_regexEmail);
+        _validadorEmail = new ValidadorEmail();
     }
 
     private async Task OnRegistroClicked()
     {
         try
         {
-            bool emailValido = ValidarEmail(Email);
+            bool emailValido = _validadorEmail.ValidarEmail(Email);
             bool senhaValida = ValidarSenha(Senha);
 
             if (emailValido && senhaValida)
@@ -46,10 +48,17 @@ public partial class PagRegistroViewModel : ObservableObject
 
                 if (usuarioRetornado == null)
                 {
-                    var usuario = new Usuario(Nome, Email, Senha, false);
+                    var usuario = new Usuario(Nome, Email, Senha, _isColaborador);
                     await _unitOfWork.UsuarioRepository.Add(usuario);
                     await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK");
-                    await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
+                    if (!_isColaborador)
+                    {
+                        await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario, _unitOfWork));
+                    }
                 }
                 else
                 {
@@ -76,21 +85,7 @@ public partial class PagRegistroViewModel : ObservableObject
         }
     }
 
-    private bool ValidarEmail(string email)
-    {
-        Match match = _regex.Match(email);
-
-        if (match.Success)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool ValidarSenha(string senha)
+    private static bool ValidarSenha(string senha)
     {
         return senha.Length == 8;
     }

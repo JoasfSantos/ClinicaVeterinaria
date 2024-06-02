@@ -1,18 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿#nullable disable
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using ClinicaVet.Data;
 
 
 namespace ClinicaVet.Repositories
 {
-    public class Repository<TEntity> where TEntity : class
+    public class Repository<TEntity>(MyDbContext context) where TEntity : class
     {
-        protected readonly MyDbContext Context;
-
-        public Repository(MyDbContext context)
-        {
-            Context = context;
-        }
+        protected readonly MyDbContext Context = context;
 
         public async Task<TEntity> Get(int id)
         {
@@ -35,10 +31,10 @@ namespace ClinicaVet.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public async Task Update(TEntity entity)
+        public void Update(TEntity entity)
         {
             Context.Set<TEntity>().Update(entity);
-            await Context.SaveChangesAsync();
+            Context.SaveChanges();
         }
 
         public void Remove(TEntity entity)

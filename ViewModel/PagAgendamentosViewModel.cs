@@ -1,7 +1,8 @@
-﻿using ClinicaVet.Model;
+﻿#nullable disable
+using ClinicaVet.Model;
 using ClinicaVet.View;
-using CommunityToolkit.Mvvm.ComponentModel;
 using ClinicaVet.Repositories;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 
@@ -12,13 +13,6 @@ namespace ClinicaVet.ViewModel
         private readonly IUnitOfWork _unitOfWork;
         private readonly Usuario _usuario;
 
-
-        [ObservableProperty]
-        private bool fluxoColaborador;
-
-        [ObservableProperty]
-        private string bannerAgendamentos;
-
         public AsyncRelayCommand<Agendamento> ExcluirCommand { get; }
 
         public AsyncRelayCommand<Agendamento> EditarCommand { get; }
@@ -26,7 +20,13 @@ namespace ClinicaVet.ViewModel
         public AsyncRelayCommand<Agendamento> AtualizarCommand { get; }
 
         [ObservableProperty]
-        private List<Agendamento> agendamentos;
+        private bool fluxoColaborador;
+
+        [ObservableProperty]
+        private string bannerAgendamentos;
+
+        [ObservableProperty]
+        private IEnumerable<Agendamento> agendamentos;
 
         [ObservableProperty]
         private string tipoPet;
@@ -51,14 +51,7 @@ namespace ClinicaVet.ViewModel
 
             _usuario = usuario;
 
-            if (FluxoColaborador) { 
-                LoadAgendamentosAsync();
-                BannerAgendamentos = "agendamento_solo.png";
-            } else
-            {
-                LoadAgendamentosTutor();
-                BannerAgendamentos = "agendamentos_banner.png";
-            }
+            _ = VerificarFluxo();
 
             ExcluirCommand = new AsyncRelayCommand<Agendamento>(OnExcluirClickedAsync);
             EditarCommand = new AsyncRelayCommand<Agendamento>(OnEditarClickedAsync);
@@ -68,22 +61,22 @@ namespace ClinicaVet.ViewModel
         public async Task LoadAgendamentosAsync()
         {
             var agendamentoEnumerable = await _unitOfWork.AgendamentoRepository.GetAll();
-            Agendamentos = agendamentoEnumerable.ToList();
-            foreach (var agendamento in Agendamentos)
-            {
-                agendamento.IsTutor = FluxoColaborador;
-            }
+            Agendamentos = agendamentoEnumerable;
+            AtualizarTutor(Agendamentos);
         }
 
         public async Task LoadAgendamentosTutor()
         {
-            var agendamentoEnumerable = await _unitOfWork.AgendamentoRepository.GetAgendamentosByIdTutor(_usuario.Id);
-            Agendamentos = agendamentoEnumerable;
-            foreach (var agendamento in Agendamentos)
+            try
             {
-                agendamento.IsTutor = FluxoColaborador;   
-            }
+                var agendamentoEnumerable = await _unitOfWork.AgendamentoRepository.GetAgendamentosByIdTutor(_usuario.Id);
+                Agendamentos = agendamentoEnumerable;
+                AtualizarTutor(Agendamentos);
 
+            }catch(Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
+            }
         }
 
         private async Task OnExcluirClickedAsync(Agendamento agendamentoSelecionado)
@@ -96,7 +89,7 @@ namespace ClinicaVet.ViewModel
             else
             {
                 _unitOfWork.AgendamentoRepository.Remove(agendamentoSelecionado);
-                verificarFluxo();
+               await VerificarFluxo();
             }
         }
 
@@ -109,43 +102,60 @@ namespace ClinicaVet.ViewModel
             }
             else
             {
-            await Application.Current.MainPage.Navigation.PushAsync(new PagRegistroAgendamento(_unitOfWork, agendamentoSelecionado, true));            
+                await Application.Current.MainPage.Navigation.PushAsync(new PagRegistroAgendamento(_unitOfWork, agendamentoSelecionado, true));            
             }
         }
 
         private async Task OnEditarStatusAgendamento(Agendamento agendamento)
         {
-            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar o status do agendamento?", "OK", "Cancelar");
-            if (!confirmacao)
-            {
-                return;
-            }
-            var novoStatus = "";
             var statusAtual = agendamento.Status;
-            switch (statusAtual)
+            var novoStatus = "";
+            if (statusAtual.Equals("CONCLUÍDO"))
             {
-                case "AGENDADO":
-                    novoStatus = "EM ANDAMENTO";
-                    break;
-                case "EM ANDAMENTO":
-                    novoStatus = "CONCLUÍDO";
-                    break;
+                await Application.Current.MainPage.DisplayAlert("Informação!", "Não é possível mais alterar o status.", "OK");
             }
-            agendamento.Status = novoStatus;
-            await _unitOfWork.AgendamentoRepository.Update(agendamento);
-            verificarFluxo();
+            else
+            {
+                var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar o status do agendamento?", "OK", "Cancelar");
+                if (!confirmacao)
+                {
+                    return;
+                }
+                switch (statusAtual)
+                {
+                    case "AGENDADO":
+                        novoStatus = "EM ANDAMENTO";
+                        break;
+                    case "EM ANDAMENTO":
+                        novoStatus = "CONCLUÍDO";
+                        break;
+                }
+                agendamento.Status = novoStatus;
+                _unitOfWork.AgendamentoRepository.Update(agendamento);
+                await VerificarFluxo();
+            }
         }
 
-
-        private async Task verificarFluxo()
+        public async Task VerificarFluxo()
         {
             if (FluxoColaborador)
             {
+                BannerAgendamentos = "agendamento_solo.png";
                 await LoadAgendamentosAsync();
             }
             else
             {
-                LoadAgendamentosTutor();
+                BannerAgendamentos = "agendamentos_banner.png";
+                await LoadAgendamentosTutor();
+            }
+        }
+
+        private void AtualizarTutor(IEnumerable<Agendamento> agendamentos)
+        {
+            foreach (var agendamento in agendamentos)
+            {
+                agendamento.IsTutor = FluxoColaborador;
+                NomeTutor = _usuario.Nome;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using ClinicaVet.Repositories;
+﻿#nullable disable
+using ClinicaVet.Repositories;
 using ClinicaVet.View;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -41,8 +42,7 @@ namespace ClinicaVet.ViewModel
             }
             else
             {
-                // Nenhum usuário com o email e senha fornecidos foi encontrado
-                // Você pode mostrar uma mensagem de erro ou algo similar
+                await Application.Current.MainPage.DisplayAlert("Erro", "E-mail ou senha incorretos.", "OK");
             }
         }
 
@@ -50,10 +50,9 @@ namespace ClinicaVet.ViewModel
         {
             if (Email == null || Senha == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "Email ou senha não podem estar vazios.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Erro", "E-mail ou senha não podem estar vazios.", "OK");
                 return false;
             }
-
             return true;
         }
     }

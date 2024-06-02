@@ -5,10 +5,13 @@ using ClinicaVet.ViewModel;
 namespace ClinicaVet.View;
 public partial class PagRegistro : ContentPage
 {
-    public PagRegistro(IUnitOfWork unitOfWork)
+    private readonly bool _isColaborador;
+    public PagRegistro(IUnitOfWork unitOfWork, bool isColaborador)
     {
         InitializeComponent();
 
-        BindingContext = new PagRegistroViewModel(unitOfWork);
+        _isColaborador = isColaborador;
+
+        BindingContext = new PagRegistroViewModel(unitOfWork, _isColaborador);
     }
 }

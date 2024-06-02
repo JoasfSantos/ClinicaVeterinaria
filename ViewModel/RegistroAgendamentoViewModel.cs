@@ -1,4 +1,5 @@
-﻿using ClinicaVet.Repositories;
+﻿#nullable disable
+using ClinicaVet.Repositories;
 using ClinicaVet.Model;
 using ClinicaVet.View;
 using System.Windows.Input;
@@ -11,7 +12,7 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
     private readonly IUnitOfWork _unitOfWork;
     private readonly Usuario _usuario;
     private readonly Agendamento _agedamento;
-    private readonly string _statusAgendamentoAgendado;
+    private readonly string _statusAgendamentoAgendado = string.Empty;
 
     [ObservableProperty]
     private bool fluxoEdicao;
@@ -53,7 +54,7 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
 
         BannerAgendamento = "agendar_banner.png";
 
-        TiposPet = Enum.GetNames(typeof(EspeciePet)).ToList();
+        TiposPet = [.. Enum.GetNames(typeof(EspeciePet))];
 
         _unitOfWork = unitOfWork;
 
@@ -76,7 +77,7 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
 
         BannerAgendamento = "editar_agendamento.png";
 
-        TiposPet = Enum.GetNames(typeof(EspeciePet)).ToList();
+        TiposPet = [.. Enum.GetNames(typeof(EspeciePet))];
 
         _unitOfWork = unitOfWork;
 
@@ -95,18 +96,18 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
             {
                 _agedamento.DataAgendamento = DataAgendamento;
                 _agedamento.TipoPet = TipoPet;
-                await _unitOfWork.AgendamentoRepository.Update(_agedamento);
+                _unitOfWork.AgendamentoRepository.Update(_agedamento);
                 await Application.Current.MainPage.DisplayAlert("Sucesso", "Agendamento alterado com êxito!", "OK");
-                atualizarUsuario();
-                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario, _unitOfWork));
+                await AtualizarUsuario();
+                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(Usuario, _unitOfWork));
             }
             else
             {
-                if (validarCadastroAgendamento())
+                if (ValidarCadastroAgendamento())
                 {
                     var agendamento = new Agendamento(DataAgendamento, _statusAgendamentoAgendado, TipoPet, _usuario.Id, _usuario.Nome, 0);
                     await _unitOfWork.AgendamentoRepository.Add(agendamento);
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Agendamento realizado com êxito!", "OK");
                     await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(_usuario, _unitOfWork));
                 }
                 else
@@ -114,21 +115,20 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
                     await Application.Current.MainPage.DisplayAlert("Erro", "Tipo de pet não pode estar vazio!", "OK");
                 }
             }
-
         }
         catch (Exception ex)
         {
             // Exibir mensagem de erro
-            await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
+            await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
         }
 
     }
-        private async Task atualizarUsuario()
+        private async Task AtualizarUsuario()
         {
-            usuario = await _unitOfWork.UsuarioRepository.Get(_agedamento.IdTutor);
+            Usuario = await _unitOfWork.UsuarioRepository.Get(_agedamento.IdTutor);
         }
 
-    private bool validarCadastroAgendamento()
+    private bool ValidarCadastroAgendamento()
     {
         if (TipoPet == null)
         {

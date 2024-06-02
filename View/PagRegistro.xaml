@@ -33,7 +33,7 @@
                                Text="{Binding Nome}"
                                HorizontalTextAlignment="Start" 
                                WidthRequest="250"
-                               Placeholder="Insira seu nome"/>
+                               Placeholder="Nome"/>
                         </FlexLayout>
                     </Border>
                     
@@ -51,7 +51,7 @@
                                    Text="{Binding Email}"
                                    HorizontalTextAlignment="Start"
                                    WidthRequest="250"
-                                   Placeholder="Insira seu Email"/>
+                                   Placeholder="E-mail"/>
                         </FlexLayout>
                     </Border>
 
@@ -61,7 +61,7 @@
                     <Border Style="{StaticResource MyBorderStyle}">
                         <FlexLayout Direction="Row">
                             <Image Source="senha.png" 
-                               Margin="0,0,10,0"/>
+                                   Margin="0,0,10,0"/>
 
                             <Entry x:Name="registroSenhaEntry"
                                     FontSize="20"
@@ -70,7 +70,7 @@
                                     HorizontalTextAlignment="Start"
                                     WidthRequest="250"
                                     MaxLength="8" 
-                                    Placeholder="Insira sua senha"/>
+                                    Placeholder="Senha"/>
                         </FlexLayout>
                     </Border>
 

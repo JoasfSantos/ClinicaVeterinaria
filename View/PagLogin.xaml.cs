@@ -19,7 +19,7 @@ namespace ClinicaVet.View
 
         private void RedirecionarPagRegistro_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PagRegistro(_unitOfWork));
+            Navigation.PushAsync(new PagRegistro(_unitOfWork, false));
         }
     }
 }
