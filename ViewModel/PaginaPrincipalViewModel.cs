@@ -49,7 +49,7 @@ namespace ClinicaVet.ViewModel
         {
             _validadorEmail = new ValidadorEmail();
             EditarCommand = new AsyncRelayCommand(OnEditarClickedAsync);
-            SairCommand = new Command(async () => await Sair());
+            SairCommand = new Command(async () => await PaginaPrincipalViewModel.Sair());
             LabelIsVisible = true;
             EntryIsVisible = false;
             ButtonText = "Editar";
@@ -116,6 +116,7 @@ namespace ClinicaVet.ViewModel
                     return;
                 }
                 await AtualizarUsuario();
+                await Application.Current.MainPage.DisplayAlert("Informação!", "Dados alterados com sucesso!", "OK");
             }
             // Restaurar a exibição padrão
             LabelIsVisible = true;
@@ -133,10 +134,10 @@ namespace ClinicaVet.ViewModel
                 agendamento.NomeTutor = _usuario.Nome;
                 _unitOfWork.AgendamentoRepository.Update(agendamento);
             }
-            await Application.Current.MainPage.Navigation.PushAsync(new PagAgendamentos(_usuario, _unitOfWork));
+            await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(_usuario, _unitOfWork));
         }
 
-        private async Task Sair()
+        private static async Task Sair()
         {
             await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
         }

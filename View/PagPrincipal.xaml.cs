@@ -32,7 +32,6 @@ namespace ClinicaVet.View
                 Children.Insert(1, _pagRegistroAgendamento);
             }
 
-            CurrentPage = _pagAgendamentos;
             BindingContext = new PaginaPrincipalViewModel(_unitOfWork, _usuario);
         }
     }

@@ -81,7 +81,7 @@ namespace ClinicaVet.ViewModel
 
         private async Task OnExcluirClickedAsync(Agendamento agendamentoSelecionado)
         {
-            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o agendamento?", "OK", "Cancelar");
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o agendamento?", "Sim", "Cancelar");
             if (!confirmacao)
             {
                 return;
@@ -95,7 +95,7 @@ namespace ClinicaVet.ViewModel
 
         private async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado)
         {
-            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja editar o agendamento?", "OK", "Cancelar");
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja editar o agendamento?", "Sim", "Cancelar");
             if (!confirmacao)
             {
                 return;
@@ -155,7 +155,6 @@ namespace ClinicaVet.ViewModel
             foreach (var agendamento in agendamentos)
             {
                 agendamento.IsTutor = FluxoColaborador;
-                NomeTutor = _usuario.Nome;
             }
         }
     }
