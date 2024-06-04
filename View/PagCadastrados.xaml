@@ -56,14 +56,15 @@
                                         <RowDefinition Height="30" />
                                     </Grid.RowDefinitions>
 
+                                        <Border Stroke="#32CD32"
+                                                StrokeShape="RoundRectangle 30, 10, 10, 30"
+                                                Margin="0, 0, 0, 5">
+                                                <Image Grid.Column="0"
+                                               Grid.Row="0" 
+                                               Source="humano.png"/>
+                                        </Border>
 
-                                    <Image Grid.Column="0"
-                                           Grid.Row="0" 
-                                           Source="usuario.png"
-                                           WidthRequest="40"/>
-
-                            
-                                    <Label Grid.Row="2"
+                                        <Label Grid.Row="2"
                                        Grid.Column="0" 
                                        Text="Id:"
                                        FontAttributes="Bold" />

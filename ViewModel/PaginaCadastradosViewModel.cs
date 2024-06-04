@@ -38,16 +38,26 @@ namespace ClinicaVet.ViewModel
         }
         private async Task OnExcluirClickedAsync(Usuario usuarioSelecionado)
         {
-            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o usuario?", "Sim", "Cancelar");
-            if (!confirmacao)
+            var agendamentos = await _unitOfWork.AgendamentoRepository.GetAgendamentosByIdTutor(usuarioSelecionado.Id);
+
+            if (agendamentos.Count() > 0)
             {
-                return;
+                await Application.Current.MainPage.DisplayAlert("INFORMAÇÃO!", "Este usuario possui agendamentos pendentes", "OK");
             }
-            else
-            {
-                _unitOfWork.UsuarioRepository.Remove(usuarioSelecionado);
-                await LoadUsuariosAsync();
-            }
+            else 
+            { 
+                var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o usuario?", "Sim", "Cancelar");
+
+                if (!confirmacao)
+                {
+                    return;
+                }
+                else
+                {
+                    _unitOfWork.UsuarioRepository.Remove(usuarioSelecionado);
+                    await LoadUsuariosAsync();
+                }
+             }
         }
     }
 
