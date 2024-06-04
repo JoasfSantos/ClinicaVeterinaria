@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ClinicaVet.ViewModel"
+             x:Class="ClinicaVet.View.PagCadastrados"
+             x:DataType="vm:PaginaCadastradosViewModel"
+             IconImageSource="cadastros_icone.png"
+             Title="">
+    <StackLayout>
+        <Image Source="cadastros_banner.png"
+               Margin="0,-70,0,-80"/>
+        <ScrollView>
+            <Border Stroke="#32CD32" 
+            StrokeThickness="2" 
+            StrokeShape="RoundRectangle 10,10,10,10" 
+            Background="White"
+            WidthRequest="360"
+            HeightRequest="600">
+
+            <Grid RowDefinitions="Auto, Auto, *"
+                  RowSpacing="10">
+
+                <CollectionView ItemsSource="{Binding Usuarios}"
+                                Grid.Row="2"
+                                x:Name="YourCollectionView">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="5"
+                                       Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate x:DataType="vm:PaginaCadastradosViewModel">
+
+                            <Border Padding="10,5" HorizontalOptions="Center" Stroke="#32CD32"
+                                    WidthRequest="250">
+
+                                <Border.StrokeShape>
+
+                                    <RoundRectangle CornerRadius="5"/>
+
+                                </Border.StrokeShape>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="111" />
+                                        <ColumnDefinition Width="30" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
+
+
+                                    <Image Grid.Column="0"
+                                           Grid.Row="0" 
+                                           Source="usuario.png"
+                                           WidthRequest="40"/>
+
+                            
+                                    <Label Grid.Row="2"
+                                       Grid.Column="0" 
+                                       Text="Id:"
+                                       FontAttributes="Bold" />
+                                    <Label Grid.Row="2"
+                                       Grid.Column="1" 
+                                       HorizontalOptions="Start"
+                                       Padding="0, 0, 0, 0"
+                                       Text="{Binding Id}" />
+
+                                    <Label Grid.Row="3"
+                                       Grid.Column="0"
+                                       Text="Nome:"
+                                       Padding="0, 0, 0, 0"
+                                       FontAttributes="Bold"/>
+                                    <Label Grid.Row="3"
+                                       Grid.Column="1" 
+                                       HorizontalOptions="Start"
+                                       Padding="0, 0, 0, 0"
+                                       Text="{Binding Nome}" />
+
+                                    <Label Grid.Row="4"
+                                       Grid.Column="0"
+                                       FontAttributes="Bold"
+                                       Padding="0, 0, 0, 0"
+                                       Text="Email:"/>
+                                    <Label Grid.Row="4"
+                                       Grid.Column="1" 
+                                       HorizontalOptions="Start"
+                                       Padding="0, 0, 0, 0"
+                                       Text="{Binding Email}"/>
+                                    
+                                        <Image Grid.Column="3" 
+                                               Grid.Row="0"
+                                               WidthRequest="29"
+                                               Source="eliminar.png">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ExcluirCommand, Source={x:Reference Name=YourCollectionView}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                    </Grid>
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </Grid>
+
+            </Border>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
