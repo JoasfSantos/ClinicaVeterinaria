@@ -16,4 +16,8 @@ public class UsuarioRepository(MyDbContext context) : Repository<Usuario>(contex
     {
         return await Context.Set<Usuario>().FirstOrDefaultAsync(u => u.Email == email);
     }
+    public async Task<List<Usuario>> GetNonColaboradores()
+    {
+        return await Context.Set<Usuario>().Where(u => !u.Colaborador).ToListAsync();
+    }
 }

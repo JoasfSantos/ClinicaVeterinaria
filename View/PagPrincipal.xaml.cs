@@ -11,6 +11,7 @@ namespace ClinicaVet.View
         private readonly ContentPage _pagAgendamentos;
         private readonly ContentPage _pagRegistro;
         private readonly ContentPage _pagRegistroAgendamento;
+        private readonly ContentPage _pagCadastrados;
         private readonly IUnitOfWork _unitOfWork;
 
         public PagPrincipal(Usuario usuario, IUnitOfWork unitOfWork)
@@ -26,7 +27,9 @@ namespace ClinicaVet.View
 
             if (_usuario.Colaborador) {
                 _pagRegistro = new PagRegistro(_unitOfWork, true);
+                _pagCadastrados = new PagCadastrados(_usuario, _unitOfWork);
                 Children.Insert(1, _pagRegistro);
+                Children.Insert(2, _pagCadastrados);
             }else{
                 _pagRegistroAgendamento = new PagRegistroAgendamento(_unitOfWork, _usuario, _usuario.Colaborador);
                 Children.Insert(1, _pagRegistroAgendamento);
