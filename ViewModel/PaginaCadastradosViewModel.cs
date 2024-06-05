@@ -1,4 +1,5 @@
-﻿using ClinicaVet.Model;
+﻿#nullable disable
+using ClinicaVet.Model;
 using ClinicaVet.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -7,7 +8,6 @@ namespace ClinicaVet.ViewModel
 {
     public partial class PaginaCadastradosViewModel : ObservableObject
     {
-        private readonly Usuario _usuario;
         private readonly IUnitOfWork _unitOfWork;
 
         [ObservableProperty]
@@ -24,11 +24,10 @@ namespace ClinicaVet.ViewModel
 
         public AsyncRelayCommand<Usuario> ExcluirCommand { get; }
 
-        public PaginaCadastradosViewModel(Usuario usuario,IUnitOfWork unitOfWork)
+        public PaginaCadastradosViewModel(IUnitOfWork unitOfWork)
         {
-            _usuario = usuario;
             _unitOfWork = unitOfWork;
-            LoadUsuariosAsync();
+            _ = LoadUsuariosAsync();
             ExcluirCommand = new AsyncRelayCommand<Usuario>(OnExcluirClickedAsync);
         }
         public async Task LoadUsuariosAsync()
@@ -36,29 +35,25 @@ namespace ClinicaVet.ViewModel
             var usuariosEnumerable = await _unitOfWork.UsuarioRepository.GetNonColaboradores();
             Usuarios = usuariosEnumerable;
         }
-        private async Task OnExcluirClickedAsync(Usuario usuarioSelecionado)
+        public async Task OnExcluirClickedAsync(Usuario usuarioSelecionado)
         {
             var agendamentos = await _unitOfWork.AgendamentoRepository.GetAgendamentosByIdTutor(usuarioSelecionado.Id);
 
-            if (agendamentos.Count() > 0)
+            //if (agendamentos.Any())
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("INFORMAÇÃO!", "Este usuario possui agendamentos pendentes", "OK");
+            //    return;
+            //}
+            //var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o usuario?", "Sim", "Cancelar");
+            //if (!confirmacao)
+            //{
+            //    return;
+            //}
+            if (!agendamentos.Any())
             {
-                await Application.Current.MainPage.DisplayAlert("INFORMAÇÃO!", "Este usuario possui agendamentos pendentes", "OK");
+                _unitOfWork.UsuarioRepository.Remove(usuarioSelecionado);
+                await LoadUsuariosAsync();
             }
-            else 
-            { 
-                var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o usuario?", "Sim", "Cancelar");
-
-                if (!confirmacao)
-                {
-                    return;
-                }
-                else
-                {
-                    _unitOfWork.UsuarioRepository.Remove(usuarioSelecionado);
-                    await LoadUsuariosAsync();
-                }
-             }
         }
     }
-
 }

@@ -27,7 +27,7 @@ namespace ClinicaVet.View
 
             if (_usuario.Colaborador) {
                 _pagRegistro = new PagRegistro(_unitOfWork, true);
-                _pagCadastrados = new PagCadastrados(_usuario, _unitOfWork);
+                _pagCadastrados = new PagCadastrados( _unitOfWork);
                 Children.Insert(1, _pagRegistro);
                 Children.Insert(2, _pagCadastrados);
             }else{

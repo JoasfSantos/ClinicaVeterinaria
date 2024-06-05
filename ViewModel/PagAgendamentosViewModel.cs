@@ -73,27 +73,25 @@ namespace ClinicaVet.ViewModel
                 Agendamentos = agendamentoEnumerable;
                 AtualizarTutor(Agendamentos);
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
             }
         }
 
-        private async Task OnExcluirClickedAsync(Agendamento agendamentoSelecionado)
+        public async Task OnExcluirClickedAsync(Agendamento agendamentoSelecionado)
         {
-            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o agendamento?", "Sim", "Cancelar");
-            if (!confirmacao)
-            {
-                return;
-            }
-            else
-            {
-                _unitOfWork.AgendamentoRepository.Remove(agendamentoSelecionado);
-               await VerificarFluxo();
-            }
+            //var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o agendamento?", "Sim", "Cancelar");
+            //if (!confirmacao)
+            //{
+            //    return;
+            //}
+            _unitOfWork.AgendamentoRepository.Remove(agendamentoSelecionado);
+            await VerificarFluxo();
         }
 
-        private async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado)
+        public async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado)
         {
             var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja editar o agendamento?", "Sim", "Cancelar");
             if (!confirmacao)
@@ -102,38 +100,38 @@ namespace ClinicaVet.ViewModel
             }
             else
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new PagRegistroAgendamento(_unitOfWork, agendamentoSelecionado, true));            
+                await Application.Current.MainPage.Navigation.PushAsync(new PagRegistroAgendamento(_unitOfWork, agendamentoSelecionado, true));
             }
         }
 
-        private async Task OnEditarStatusAgendamento(Agendamento agendamento)
+        public async Task OnEditarStatusAgendamento(Agendamento agendamento)
         {
             var statusAtual = agendamento.Status;
             var novoStatus = "";
-            if (statusAtual.Equals("CONCLUÍDO"))
+            //if (statusAtual.Equals("CONCLUÍDO"))
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("Informação!", "Não é possível mais alterar o status.", "OK");
+            //    return;
+            //}
+
+            //var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar o status do agendamento?", "OK", "Cancelar");
+            //if (!confirmacao)
+            //{
+            //    return;
+            //}
+            switch (statusAtual)
             {
-                await Application.Current.MainPage.DisplayAlert("Informação!", "Não é possível mais alterar o status.", "OK");
+                case "AGENDADO":
+                    novoStatus = "EM ANDAMENTO";
+                    break;
+                case "EM ANDAMENTO":
+                    novoStatus = "CONCLUÍDO";
+                    break;
             }
-            else
-            {
-                var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar o status do agendamento?", "OK", "Cancelar");
-                if (!confirmacao)
-                {
-                    return;
-                }
-                switch (statusAtual)
-                {
-                    case "AGENDADO":
-                        novoStatus = "EM ANDAMENTO";
-                        break;
-                    case "EM ANDAMENTO":
-                        novoStatus = "CONCLUÍDO";
-                        break;
-                }
-                agendamento.Status = novoStatus;
-                _unitOfWork.AgendamentoRepository.Update(agendamento);
-                await VerificarFluxo();
-            }
+            agendamento.Status = novoStatus;
+            _unitOfWork.AgendamentoRepository.Update(agendamento);
+            await VerificarFluxo();
+
         }
 
         public async Task VerificarFluxo()
@@ -150,7 +148,7 @@ namespace ClinicaVet.ViewModel
             }
         }
 
-        private void AtualizarTutor(IEnumerable<Agendamento> agendamentos)
+        public void AtualizarTutor(IEnumerable<Agendamento> agendamentos)
         {
             foreach (var agendamento in agendamentos)
             {

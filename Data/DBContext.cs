@@ -1,14 +1,11 @@
 ﻿using ClinicaVet.Model;
-using ClinicaVet.Utilidades;
 using Microsoft.EntityFrameworkCore;
-
 
 
 namespace ClinicaVet.Data
 {
     public class MyDbContext : DbContext
     {
-
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Agendamento> Agendamentos { get; set; }
 
@@ -16,16 +13,17 @@ namespace ClinicaVet.Data
 
         public MyDbContext()
         {
-            _connectionString = $"Filename={PathDB.GetPath("teste.db3")}";
+           /*string pathDbSqlite = Path.Combine(FileSystem.AppDataDirectory, "teste.db3");
+           _connectionString = $"Filename={pathDbSqlite}";*/
 
             //Database.EnsureDeleted();
 
-            Database.EnsureCreated();
+            /*Database.EnsureCreated();*/
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(_connectionString);
+            /*optionsBuilder.UseSqlite(_connectionString);*/
         }
     }
 }

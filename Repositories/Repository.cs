@@ -15,7 +15,7 @@ namespace ClinicaVet.Repositories
             return await Context.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
             return await Context.Set<TEntity>().ToListAsync();
         }
@@ -25,19 +25,19 @@ namespace ClinicaVet.Repositories
             return Context.Set<TEntity>().Where(predicate);
         }
 
-        public async Task Add(TEntity entity)
+        public virtual async Task Add(TEntity entity)
         {
             await Context.Set<TEntity>().AddAsync(entity);
             await Context.SaveChangesAsync();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             Context.Set<TEntity>().Update(entity);
             Context.SaveChanges();
         }
 
-        public void Remove(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             Context.Set<TEntity>().Remove(entity);
             Context.SaveChanges();

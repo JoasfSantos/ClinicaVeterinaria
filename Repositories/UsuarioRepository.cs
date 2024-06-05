@@ -7,16 +7,16 @@ using ClinicaVet.Model;
 namespace ClinicaVet.Repositories;
 public class UsuarioRepository(MyDbContext context) : Repository<Usuario>(context)
 {
-    public async Task<Usuario> GetUserByEmailAndPassword(string email, string senha)
+    public virtual async Task<Usuario> GetUserByEmailAndPassword(string email, string senha)
     {
         return await Context.Set<Usuario>().FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
     }
 
-    public async Task<Usuario> GetUserByEmail(string email)
+    public virtual async Task<Usuario> GetUserByEmail(string email)
     {
         return await Context.Set<Usuario>().FirstOrDefaultAsync(u => u.Email == email);
     }
-    public async Task<List<Usuario>> GetNonColaboradores()
+    public virtual async Task<List<Usuario>> GetNonColaboradores()
     {
         return await Context.Set<Usuario>().Where(u => !u.Colaborador).ToListAsync();
     }

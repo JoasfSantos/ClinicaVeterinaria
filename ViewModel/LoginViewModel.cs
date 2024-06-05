@@ -26,7 +26,7 @@ namespace ClinicaVet.ViewModel
             LoginCommand = new Command(async () => await OnLoginClicked());
         }
 
-        private async Task OnLoginClicked()
+        public async Task OnLoginClicked()
         {
             bool isValid = await ValidarLogin();
             if (!isValid)
@@ -38,19 +38,19 @@ namespace ClinicaVet.ViewModel
 
             if (usuario != null)
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario, _unitOfWork));
+                //await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario, _unitOfWork));
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "E-mail ou senha incorretos.", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Erro", "E-mail ou senha incorretos.", "OK");
             }
         }
 
-        private async Task<bool> ValidarLogin()
+        public async Task<bool> ValidarLogin()
         {
             if (Email == null || Senha == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "E-mail ou senha não podem estar vazios.", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Erro", "E-mail ou senha não podem estar vazios.", "OK");
                 return false;
             }
             return true;
