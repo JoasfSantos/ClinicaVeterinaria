@@ -2,7 +2,7 @@ using ClinicaVet.Repositories;
 using ClinicaVet.ViewModel;
 
 
-namespace ClinicaVet.View
+namespace ClinicaVet.View //Padrão de projeto MVVM.
 {
     public partial class PagLogin : ContentPage
     {

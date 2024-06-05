@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using ClinicaVet.Data;
 
 
-namespace ClinicaVet.Repositories
+namespace ClinicaVet.Repositories // Padrão de projeto Repository.
 {
     public class Repository<TEntity>(MyDbContext context) where TEntity : class
     {

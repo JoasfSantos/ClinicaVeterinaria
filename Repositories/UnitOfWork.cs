@@ -1,7 +1,7 @@
 ﻿using ClinicaVet.Data;
 using ClinicaVet.Model;
 
-namespace ClinicaVet.Repositories;
+namespace ClinicaVet.Repositories; //Padrão de projeto Unit Of Work.
 public interface IUnitOfWork : IDisposable
 {
     UsuarioRepository UsuarioRepository { get; }
