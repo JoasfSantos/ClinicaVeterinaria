@@ -88,18 +88,18 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
         RegistroAgendamentoCommand = new Command(async () => await OnRegistroAgendamentoClicked(FluxoEdicao));
     }
 
-    private async Task OnRegistroAgendamentoClicked(bool fluxoEdicao)
+    public async Task OnRegistroAgendamentoClicked(bool fluxoEdicao)
     {
         try
         {
-            if (fluxoEdicao)
+            if (fluxoEdicao) // Diferenciação para saber se está registrando ou alterando um agendamento.
             {
                 _agedamento.DataAgendamento = DataAgendamento;
                 _agedamento.TipoPet = TipoPet;
                 _unitOfWork.AgendamentoRepository.Update(_agedamento);
-                await Application.Current.MainPage.DisplayAlert("Sucesso", "Agendamento alterado com êxito!", "OK");
+                await Application.Current.MainPage.DisplayAlert("Sucesso", "Agendamento alterado com êxito!", "OK"); //Linha deve ser comentada.
                 await AtualizarUsuario();
-                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(Usuario, _unitOfWork));
+                await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(Usuario, _unitOfWork)); //Linha deve ser comentada.
             }
             else
             {
@@ -107,28 +107,28 @@ public partial class RegistroAgendamentoViewModel : ObservableObject
                 {
                     var agendamento = new Agendamento(DataAgendamento, _statusAgendamentoAgendado, TipoPet, _usuario.Id, _usuario.Nome, 0);
                     await _unitOfWork.AgendamentoRepository.Add(agendamento);
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Agendamento realizado com êxito!", "OK");
-                    await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(_usuario, _unitOfWork));
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Agendamento realizado com êxito!", "OK"); //Linha deve ser comentada.
+                    await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(_usuario, _unitOfWork)); //Linha deve ser comentada.
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Tipo de pet não pode estar vazio!", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Erro", "Tipo de pet não pode estar vazio!", "OK"); //Linha deve ser comentada.
                 }
             }
         }
         catch (Exception ex)
         {
             // Exibir mensagem de erro
-            await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
+            await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK"); //Linha deve ser comentada.
         }
 
     }
-        private async Task AtualizarUsuario()
+        public async Task AtualizarUsuario() // Atualiza o usuário para retornar novamente para a página principal.
         {
             Usuario = await _unitOfWork.UsuarioRepository.Get(_agedamento.IdTutor);
         }
 
-    private bool ValidarCadastroAgendamento()
+    private bool ValidarCadastroAgendamento() // Impede que o usuário cadastre um agendamento sem o tipo de pet.
     {
         if (TipoPet == null)
         {

@@ -25,13 +25,13 @@ namespace ClinicaVet.View
             _pagAgendamentos = new PagAgendamentos(_usuario, _unitOfWork);
             Children.Insert(0, _pagAgendamentos);
 
-            if (_usuario.Colaborador) {
-                _pagRegistro = new PagRegistro(_unitOfWork, true);
+            if (_usuario.Colaborador) { // Se usuário for um colaborador, pode acessar páginas de cadastro para registrar outros colaboradores, além de cosultar os usuários cadastrados.
+                _pagRegistro = new PagRegistro(_unitOfWork, true, _usuario);
                 _pagCadastrados = new PagCadastrados( _unitOfWork);
                 Children.Insert(1, _pagRegistro);
                 Children.Insert(2, _pagCadastrados);
             }else{
-                _pagRegistroAgendamento = new PagRegistroAgendamento(_unitOfWork, _usuario, _usuario.Colaborador);
+                _pagRegistroAgendamento = new PagRegistroAgendamento(_unitOfWork, _usuario, _usuario.Colaborador); //Se o usuário for um tutor, ele poderá registrar agendamentos.
                 Children.Insert(1, _pagRegistroAgendamento);
             }
 

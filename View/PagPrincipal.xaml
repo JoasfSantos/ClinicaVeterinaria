@@ -112,16 +112,17 @@
                             <StackLayout VerticalOptions="Center">
                                 <Label HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="End"
-                                       Text="{Binding Senha}" 
+                                       Text="********" 
                                        IsVisible="{Binding LabelIsVisible}"/>
 
                                 <Entry HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="Center"
                                        WidthRequest="200"
                                        IsPassword="True"
+                                       MaxLength="8"
                                        IsVisible="{Binding EntryIsVisible}"
                                        Text="{Binding SenhaNovo}"
-                                       Placeholder="{Binding Senha}"/>
+                                       Placeholder="********"/>
                             </StackLayout>
                         </Border>
 

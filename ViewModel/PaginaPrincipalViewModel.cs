@@ -48,19 +48,29 @@ namespace ClinicaVet.ViewModel
         public PaginaPrincipalViewModel(IUnitOfWork unitOfWork, Usuario usuario)
         {
             _validadorEmail = new ValidadorEmail();
+
             EditarCommand = new AsyncRelayCommand(OnEditarClickedAsync);
+
             SairCommand = new Command(async () => await PaginaPrincipalViewModel.Sair());
+
             LabelIsVisible = true;
+
             EntryIsVisible = false;
+
             ButtonText = "Editar";
+
             _unitOfWork = unitOfWork;
+
             _usuario = usuario;
+
             Nome = _usuario.Nome;
+
             Email = _usuario.Email;
-            Senha = "********";
+
+            Senha = _usuario.Senha;
         }
 
-        private async Task OnEditarClickedAsync()
+        public async Task OnEditarClickedAsync() // Editar dados do usuário.
         {
             // Verificar se houve alguma alteração
             bool houveAlteracao = false;
@@ -104,19 +114,20 @@ namespace ClinicaVet.ViewModel
                 }
 
                 _usuario.Senha = SenhaNovo;
+                Senha = SenhaNovo;
                 houveAlteracao = true;
             }
 
             // Exibir mensagem de confirmação apenas se houver alterações
             if (houveAlteracao)
             {
-                var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar seus dados?", "Sim", "Cancelar");
-                if (!confirmacao)
-                {
-                    return;
-                }
+                var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar seus dados?", "Sim", "Cancelar"); //Linha deve ser comentada.
+                if (!confirmacao) //Linha deve ser comentada.
+                { //Linha deve ser comentada.
+                    return; //Linha deve ser comentada.
+                } //Linha deve ser comentada.
                 await AtualizarUsuario();
-                await Application.Current.MainPage.DisplayAlert("Informação!", "Dados alterados com sucesso!", "OK");
+                await Application.Current.MainPage.DisplayAlert("Informação!", "Dados alterados com sucesso!", "OK"); //Linha deve ser comentada.
             }
             // Restaurar a exibição padrão
             LabelIsVisible = true;
@@ -125,19 +136,19 @@ namespace ClinicaVet.ViewModel
         }
 
         // Atualizar usuário no repositório
-        private async Task AtualizarUsuario()
+        public async Task AtualizarUsuario()
         {
             _unitOfWork.UsuarioRepository.Update(_usuario);
             IEnumerable<Agendamento> agendamentos = await _unitOfWork.AgendamentoRepository.GetAgendamentosByIdTutor(_usuario.Id);
-            foreach (var agendamento in agendamentos)
+            foreach (var agendamento in agendamentos) // Quando nome do usuário for alteado, se ele é um tutor, o mesmo também deve ser alterado para cada agendamento que ele fez.
             {
                 agendamento.NomeTutor = _usuario.Nome;
                 _unitOfWork.AgendamentoRepository.Update(agendamento);
             }
-            await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(_usuario, _unitOfWork));
+            await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(_usuario, _unitOfWork)); //Linha deve ser comentada.
         }
 
-        private static async Task Sair()
+        private static async Task Sair() // Sair kkk
         {
             await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
         }

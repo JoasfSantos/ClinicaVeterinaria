@@ -30,25 +30,25 @@ namespace ClinicaVet.ViewModel
             _ = LoadUsuariosAsync();
             ExcluirCommand = new AsyncRelayCommand<Usuario>(OnExcluirClickedAsync);
         }
-        public async Task LoadUsuariosAsync()
+        public async Task LoadUsuariosAsync() // Lista os usuários não colaboradores na página de cadastrados(Apenas Colaboradores tem acesso a essa página.)
         {
             var usuariosEnumerable = await _unitOfWork.UsuarioRepository.GetNonColaboradores();
             Usuarios = usuariosEnumerable;
         }
-        public async Task OnExcluirClickedAsync(Usuario usuarioSelecionado)
+        public async Task OnExcluirClickedAsync(Usuario usuarioSelecionado) // Exclui um usuário da lista, mas apenas se o mesmo não tiver agendamentos realizados.
         {
             var agendamentos = await _unitOfWork.AgendamentoRepository.GetAgendamentosByIdTutor(usuarioSelecionado.Id);
 
-            //if (agendamentos.Any())
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("INFORMAÇÃO!", "Este usuario possui agendamentos pendentes", "OK");
-            //    return;
-            //}
-            //var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o usuario?", "Sim", "Cancelar");
-            //if (!confirmacao)
-            //{
-            //    return;
-            //}
+            if (agendamentos.Any()) //Linha deve ser comentada.
+            { //Linha deve ser comentada.
+                await Application.Current.MainPage.DisplayAlert("INFORMAÇÃO!", "Este usuario possui agendamentos pendentes", "OK"); //Linha deve ser comentada.
+                return; //Linha deve ser comentada.
+            } //Linha deve ser comentada.
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o usuario?", "Sim", "Cancelar"); //Linha deve ser comentada.
+            if (!confirmacao) //Linha deve ser comentada.
+            { //Linha deve ser comentada.
+                return; //Linha deve ser comentada.
+            } //Linha deve ser comentada.
             if (!agendamentos.Any())
             {
                 _unitOfWork.UsuarioRepository.Remove(usuarioSelecionado);

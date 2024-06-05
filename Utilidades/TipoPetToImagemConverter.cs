@@ -3,7 +3,7 @@ using System.Globalization;
 
 
 namespace ClinicaVet.Utilidades;
-public class TipoPetToImagemConverter : IValueConverter
+public class TipoPetToImagemConverter : IValueConverter //Classe criada para alterar a imagem do pet de acordo com o TipoPet.
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {

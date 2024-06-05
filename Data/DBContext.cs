@@ -13,17 +13,17 @@ namespace ClinicaVet.Data
 
         public MyDbContext()
         {
-           /*string pathDbSqlite = Path.Combine(FileSystem.AppDataDirectory, "teste.db3");
-           _connectionString = $"Filename={pathDbSqlite}";*/
+            string pathDbSqlite = Path.Combine(FileSystem.AppDataDirectory, "teste.db3"); //Essa linha deve ser comentada.
+            _connectionString = $"Filename={pathDbSqlite}"; //Essa linha deve ser comentada.
 
-            //Database.EnsureDeleted();
+            //Database.EnsureDeleted(); //Essa linha deve FICAR comentada.
 
-            /*Database.EnsureCreated();*/
+            Database.EnsureCreated(); //Essa linha deve ser comentada.
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /*optionsBuilder.UseSqlite(_connectionString);*/
+            optionsBuilder.UseSqlite(_connectionString);
         }
     }
 }

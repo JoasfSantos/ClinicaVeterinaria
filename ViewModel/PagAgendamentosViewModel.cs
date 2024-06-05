@@ -58,14 +58,14 @@ namespace ClinicaVet.ViewModel
             AtualizarCommand = new AsyncRelayCommand<Agendamento>(OnEditarStatusAgendamento);
         }
 
-        public async Task LoadAgendamentosAsync()
+        public async Task LoadAgendamentosAsync() // Carrega todos os agendamentos do banco de dados.
         {
             var agendamentoEnumerable = await _unitOfWork.AgendamentoRepository.GetAll();
             Agendamentos = agendamentoEnumerable;
             AtualizarTutor(Agendamentos);
         }
 
-        public async Task LoadAgendamentosTutor()
+        public async Task LoadAgendamentosTutor() // Carrega todos os agendamentos daquele tutor que está logado.
         {
             try
             {
@@ -76,22 +76,22 @@ namespace ClinicaVet.ViewModel
             }
             catch (Exception ex)
             {
-                //await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Erro", $"{ex}\n Ocorreu um erro ao cadastrar. Por favor contate o suporte.", "OK"); //Linha deve ser comentada.
             }
         }
 
         public async Task OnExcluirClickedAsync(Agendamento agendamentoSelecionado)
         {
-            //var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o agendamento?", "Sim", "Cancelar");
-            //if (!confirmacao)
-            //{
-            //    return;
-            //}
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja excluir o agendamento?", "Sim", "Cancelar"); //Linha deve ser comentada.
+            if (!confirmacao) //Linha deve ser comentada.
+            { //Linha deve ser comentada.
+                return; //Linha deve ser comentada.
+            } //Linha deve ser comentada.
             _unitOfWork.AgendamentoRepository.Remove(agendamentoSelecionado);
             await VerificarFluxo();
         }
 
-        public async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado)
+        public async Task OnEditarClickedAsync(Agendamento agendamentoSelecionado) //Redireciona para a página de edição de agendamento.
         {
             var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja editar o agendamento?", "Sim", "Cancelar");
             if (!confirmacao)
@@ -104,21 +104,21 @@ namespace ClinicaVet.ViewModel
             }
         }
 
-        public async Task OnEditarStatusAgendamento(Agendamento agendamento)
+        public async Task OnEditarStatusAgendamento(Agendamento agendamento) // Editar status do agendamento, ação só é habilitada para usuários colaboradores.
         {
             var statusAtual = agendamento.Status;
             var novoStatus = "";
-            //if (statusAtual.Equals("CONCLUÍDO"))
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("Informação!", "Não é possível mais alterar o status.", "OK");
-            //    return;
-            //}
+            if (statusAtual.Equals("CONCLUÍDO")) // Bloco "if" todo deve ser comentado.
+            {
+                await Application.Current.MainPage.DisplayAlert("Informação!", "Não é possível mais alterar o status.", "OK");
+                return;
+            }
 
-            //var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar o status do agendamento?", "OK", "Cancelar");
-            //if (!confirmacao)
-            //{
-            //    return;
-            //}
+            var confirmacao = await Application.Current.MainPage.DisplayAlert("Confirmação!", "Tem certeza que deseja alterar o status do agendamento?", "OK", "Cancelar"); //Linha deve ser comentada.
+            if (!confirmacao) //Linha deve ser comentada.
+            { //Linha deve ser comentada.
+                return; //Linha deve ser comentada.
+            } //Linha deve ser comentada.
             switch (statusAtual)
             {
                 case "AGENDADO":
@@ -134,7 +134,7 @@ namespace ClinicaVet.ViewModel
 
         }
 
-        public async Task VerificarFluxo()
+        public async Task VerificarFluxo() // Atualiza os agendamentos e a imagem da página, dependendo do fluxo.
         {
             if (FluxoColaborador)
             {
@@ -148,7 +148,7 @@ namespace ClinicaVet.ViewModel
             }
         }
 
-        public void AtualizarTutor(IEnumerable<Agendamento> agendamentos)
+        public void AtualizarTutor(IEnumerable<Agendamento> agendamentos) // Função utilizada para habilitar o botão de alteração do status. "Binding no XAML IsEnabled"
         {
             foreach (var agendamento in agendamentos)
             {

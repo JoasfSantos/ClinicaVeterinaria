@@ -2,7 +2,7 @@
 using System.Globalization;
 
 
-namespace ClinicaVet.Utilidades;
+namespace ClinicaVet.Utilidades; // Classe criada para alterar o formato da data para o padrão BR.
 public class DateConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -13,6 +13,7 @@ public partial class PagRegistroViewModel : ObservableObject
     private readonly IUnitOfWork _unitOfWork;
     private readonly bool _isColaborador;
     private readonly ValidadorEmail _validadorEmail;
+    private readonly Usuario _usuarioCadastrando;
 
     public ICommand RegistroCommand { get; }
     [ObservableProperty]
@@ -35,7 +36,20 @@ public partial class PagRegistroViewModel : ObservableObject
         _validadorEmail = new ValidadorEmail();
     }
 
-    private async Task OnRegistroClicked()
+    public PagRegistroViewModel(IUnitOfWork unitOfWork, bool colaborador, Usuario usuarioCadastrando)
+    {
+        _usuarioCadastrando = usuarioCadastrando;
+
+        _unitOfWork = unitOfWork;
+
+        _isColaborador = colaborador;
+
+        RegistroCommand = new Command(async () => await OnRegistroClicked());
+
+        _validadorEmail = new ValidadorEmail();
+    }
+
+    public async Task OnRegistroClicked()
     {
         try
         {
@@ -44,28 +58,28 @@ public partial class PagRegistroViewModel : ObservableObject
 
             if (emailValido && senhaValida)
             {
-                var usuarioRetornado = await _unitOfWork.UsuarioRepository.GetUserByEmail(Email);
+                var usuarioRetornado = await _unitOfWork.UsuarioRepository.GetUserByEmail(Email); // Se achar um usuário, disparará mensagem sobre usuário já existente.
 
                 if (usuarioRetornado == null)
                 {
                     var usuario = new Usuario(Nome, Email, Senha, _isColaborador);
                     await _unitOfWork.UsuarioRepository.Add(usuario);
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK");
-                    if (!_isColaborador)
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Cadastro realizado com êxito!", "OK"); //(Linha deve ser comentada)
+                    if (!_isColaborador) // (Bloco completo "if else" deve ser comentado)
                     {
                         await Application.Current.MainPage.Navigation.PushAsync(new PagLogin());
                     }
                     else
                     {
-                        await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(usuario, _unitOfWork));
+                        await Application.Current.MainPage.Navigation.PushAsync(new PagPrincipal(_usuarioCadastrando, _unitOfWork));
                     }
                 }
-                else
+                else // (Bloco completo "else" deve ser comentado)
                 {
                     await Application.Current.MainPage.DisplayAlert("Erro", $"O e-mail: {Email}, já existente na base de dados", "OK");
                 }
             }
-            else
+            else // (Bloco completo "else" deve ser comentado)
             {
                 if (!emailValido)
                 {
@@ -81,7 +95,7 @@ public partial class PagRegistroViewModel : ObservableObject
         catch (Exception ex)
         {
             // Exibir mensagem de erro genérica
-            await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar: {ex.Message}", "OK");
+            await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao cadastrar: {ex.Message}", "OK"); // (Deve ser comentado)
         }
     }
 

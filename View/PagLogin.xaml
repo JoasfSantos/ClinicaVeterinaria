@@ -70,7 +70,7 @@
                 TextColor="DeepSkyBlue"
                 HorizontalOptions="Center"
                 BackgroundColor="White"
-                Clicked="RedirecionarPagRegistro_Clicked"
+                Command="{Binding RedirecionarPagRegistroCommand}"
                 FontSize="15" />
 
         <local:LogoLoc/>

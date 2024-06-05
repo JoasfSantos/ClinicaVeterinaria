@@ -6,7 +6,7 @@ using ClinicaVet.ViewModel;
 
 namespace ClinicaVet.View
 {
-    public partial class PagRegistroAgendamento : ContentPage
+    public partial class PagRegistroAgendamento : ContentPage // Sobrecarga de construtores para redirecionar o usuário para registrar um agendamento ou edita-lo.
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Usuario _usuario;
@@ -18,6 +18,8 @@ namespace ClinicaVet.View
             InitializeComponent();
 
             _unitOfWork = unitOfWork;
+
+            _fluxoEdicao = fluxoEdicao;
 
             _usuario = usuario;
 

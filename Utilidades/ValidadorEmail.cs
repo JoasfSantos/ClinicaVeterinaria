@@ -2,7 +2,7 @@
 
 
 namespace ClinicaVet.Utilidades;
-public class ValidadorEmail
+public class ValidadorEmail // Regex E-mail.
 {
     private readonly string _regexEmail = @"^[a-zA-Z0-9_-]+@[a-z]+\.com(\.br)?$";
     private readonly Regex _regex;

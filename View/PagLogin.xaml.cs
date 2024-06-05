@@ -16,10 +16,5 @@ namespace ClinicaVet.View
 
             BindingContext = new PagLoginViewModel(_unitOfWork);
         }
-
-        private void RedirecionarPagRegistro_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new PagRegistro(_unitOfWork, false));
-        }
     }
 }
